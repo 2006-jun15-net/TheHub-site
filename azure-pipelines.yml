@@ -13,7 +13,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  appDir: TheHub-site
+  appDir: TheHubUI
 
 steps:
 - task: NodeTool@0
