@@ -26,7 +26,10 @@ steps:
     SonarCloud: 'Sonarcloud TheHub site'
     organization: '2006-jun15-net'
     scannerMode: 'CLI'
-    configMode: 'file'
+    configMode: 'manual'
+    cliProjectKey: '2006-jun15-net_TheHub-site'
+    cliProjectName: 'The Hub'
+    cliSources: '$(appDir)/src'
 
 - script: |
     npm install -g @angular/cli
