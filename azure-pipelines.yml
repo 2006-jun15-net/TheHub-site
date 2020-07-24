@@ -45,6 +45,7 @@ stages:
           displayName: 'Install Node.js'
 
         - task: SonarCloudPrepare@1
+          displayname: SonarCloud Prepare
           inputs:
             SonarCloud: 'Sonarcloud TheHub site'
             organization: '2006-jun15-net'
@@ -62,8 +63,10 @@ stages:
           workingDirectory: $(appDir)
 
         - task: SonarCloudAnalyze@1
+          displayName: SonarCloud Analyze
 
         - task: SonarCloudPublish@1
+          displayname: SonarCloud publish
           inputs:
             pollingTimeoutSec: '300'
 
@@ -83,6 +86,7 @@ stages:
 
         steps:
           - task: AzureRmWebAppDeployment@4
+            displayname: deploy to azure app service
             inputs:
               ConnectionType: 'AzureRM'
               azureSubscription: 'Azure subscription 1(a8f0024b-b40d-44a8-8a01-2d63b02fb4c7)'
