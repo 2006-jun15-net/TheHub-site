@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "TheHubUI"
+    }
+  },
+  "defaultProject": "TheHubUI",
+  "cli": {
+    "analytics": "ee762b0d-8da7-4ea1-9049-020b9cfe4442"
+  }
 }
