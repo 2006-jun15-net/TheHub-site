@@ -11,7 +11,7 @@
 .navitem{
     font-size:30px;
 }
-.navbar-nav li{
+.navbar-nav, li{
     font-size: 33;
 }
 
