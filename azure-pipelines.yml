@@ -10,86 +10,47 @@ pool:
 variables:
   appDir: TheHubUI
 
-stages:
-  - stage: build
-    pool: 
-      vmImage: 'ubuntu-latest'
-    jobs:
-      - job: build
+  jobs:
+    - job: build
 
-        steps:
-        - task: NodeTool@0
-          inputs:
-            versionSpec: '12.x'
-          displayName: 'Install Node.js'
+      steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '12.x'
+        displayName: 'Install Node.js'
+        
+      - task: SonarCloudPrepare@1
+        displayName: SonarCloud Prepare
+        inputs:
+          SonarCloud: 'Sonarcloud TheHub site'
+          organization: '2006-jun15-net'
+          scannerMode: 'CLI'
+          configMode: 'manual'
+          cliProjectKey: '2006-jun15-net_TheHub-site'
+          cliProjectName: 'The Hub'
+          cliSources: '$(appDir)/src'
 
-        - script: |
-            npm install -g @angular/cli
-            npm install
-            ng build --prod
-          displayName: 'npm install and build'
-          workingDirectory: $(appDir)
+      - script: |
+          npm install -g @angular/cli
+          npm install
+          ng build --prod
+        displayName: 'npm install and build'
+        workingDirectory: $(appDir)
 
-  - stage: analyze
-    dependsOn: []
-    pool: 
-      vmImage: 'ubuntu-latest'
+      - task: SonarCloudAnalyze@1
+        displayName: SonarCloud Analyze
 
-      jobs:
-      - job: analyze
+      - task: SonarCloudPublish@1
+        inputs:
+          pollingTimeoutSec: '300'
+        displayName: SonarCloud publish
 
-        steps:
-        - task: NodeTool@0
-          inputs:
-            versionSpec: '12.x'
-          displayName: 'Install Node.js'
+      - task: AzureRmWebAppDeployment@4
+        displayName: deploy to azure app service
+        inputs:
+          ConnectionType: 'AzureRM'
+          azureSubscription: 'Azure subscription 1(a8f0024b-b40d-44a8-8a01-2d63b02fb4c7)'
+          appType: 'webApp'
+          WebAppName: 'TheHub-site'
+          packageForLinux: '$(appDir)/dist/$(appDir)'
 
-        - task: SonarCloudPrepare@1
-          displayname: SonarCloud Prepare
-          inputs:
-            SonarCloud: 'Sonarcloud TheHub site'
-            organization: '2006-jun15-net'
-            scannerMode: 'CLI'
-            configMode: 'manual'
-            cliProjectKey: '2006-jun15-net_TheHub-site'
-            cliProjectName: 'The Hub'
-            cliSources: '$(appDir)/src'
-
-        - script: |
-            npm install -g @angular/cli
-            npm install
-            ng build --prod
-          displayName: 'npm install and build'
-          workingDirectory: $(appDir)
-
-        - task: SonarCloudAnalyze@1
-          displayName: SonarCloud Analyze
-
-        - task: SonarCloudPublish@1
-          displayname: SonarCloud publish
-          inputs:
-            pollingTimeoutSec: '300'
-
-  - stage: deploy
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    dependsOn:
-    - build
-    - analyze
-
-    pool: 
-      vmImage: 'ubuntu-latest'
-
-      jobs:
-      - deployment: deploy_dev
-
-        environment: dev
-
-        steps:
-          - task: AzureRmWebAppDeployment@4
-            displayname: deploy to azure app service
-            inputs:
-              ConnectionType: 'AzureRM'
-              azureSubscription: 'Azure subscription 1(a8f0024b-b40d-44a8-8a01-2d63b02fb4c7)'
-              appType: 'webApp'
-              WebAppName: 'TheHub-site'
-              packageForLinux: '$(appDir)/dist/$(appDir)'
