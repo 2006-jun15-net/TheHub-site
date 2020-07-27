@@ -1,0 +1,53 @@
+<body class="form-v4">
+	<div class="page-content">
+		<div class="form-v4-content">
+			<div class="form-left">
+				<h2>INFORMATION</h2>
+				<p class="text-1">Form Status: {{ profileForm.status }}</p>
+                <p class="text-2"><span>MoreInfo:</span> Hello World</p>
+			</div>
+            <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="form-detail" id="myform">
+                <h2>REGISTER FORM</h2>
+                <div class="form-group">
+                    <div class="form-row form-row-1">
+                        <label for="first_name">First Name</label>
+                        <input type="text" formControlName="firstName" required id="first_name" class="input-text">
+                        <print-error [control]="profileForm.get('firstName')"></print-error>
+                    </div>
+                    <div class="form-row form-row-1">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" formControlName="lastName" required id="last_name" class="input-text">
+                        <print-error [control]="profileForm.get('lastName')"></print-error>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label for="user_name">User Name</label>
+                    <input type="text" formControlName="userName" required id="user_name" class="input-text">
+                    <print-error [control]="profileForm.get('userName')"></print-error>
+                </div>
+                <div class="form-row">
+                    <label for="your_email">Your Email</label>
+                    <input type="email" formControlName="email" required id="your_email" class="input-text" required >
+                    <print-error [control]="profileForm.get('email')"></print-error>
+                </div>
+                <div class="form-group">
+                    <div class="form-row form-row-1 ">
+                        <label for="password">Password</label>
+                        <input type="password" formControlName="password" required id="password" class="input-text" required>
+                        <print-error [control]="profileForm.get('password')"></print-error>
+                    </div>
+                    <div class="form-row form-row-1">
+                        <label for="comfirm-password">Comfirm Password</label>
+                        <input type="password" formControlName="confirmPass" required id="comfirm_password" class="input-text">
+                        <print-error [control]="profileForm.get('confirmPass')"></print-error>
+                    </div>
+                </div>
+                <div class="form-row-last">
+                    <input type="submit" [disabled]="!profileForm.valid" class="register" value="Register"/>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    
+</body>

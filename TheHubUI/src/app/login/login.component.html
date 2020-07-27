@@ -16,16 +16,29 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+      <input [(ngModel)]="username" type="text" id="login" class="fadeIn second" name="username" #un="ngModel" placeholder="Username" required>
+      <div [hidden]="un.valid || un.pristine" class="alert alert-danger">
+        username is required
+      </div>
+      <input [(ngModel)]="password" type="password" id="password" class="fadeIn third" name="password" #pwd="ngModel" placeholder="Password" required>
+      <div [hidden]="pwd.valid || pwd.pristine" class="alert alert-danger">
+        password is required
+      </div>
+      <input type="submit" [disabled]="!loginForm.valid" class="fadeIn fourth" value="Log In">
     </form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter" style="display: inline-block;">
-	  <a class="underlineHover" href="#">Register Now!</a>
+	  <a class="underlineHover" routerLink="/register">Register Now!</a>
     </div>
 
   </div>
 </div>
+<div *ngIf="user">
+  <h1>{{user.firstName}}</h1>
+</div>
+<div *ngIf="error">
+  <p>{{error}}</p>
+</div>
+
