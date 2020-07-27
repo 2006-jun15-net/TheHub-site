@@ -6,7 +6,7 @@ import user from './models/user';
   providedIn: 'root'
 })
 export class UserService {
-  private baseUrl = "#";
+  private baseUrl = "https://project2-thehub.azurewebsites.net/swagger/index.html";
   
   constructor(private httpClient : HttpClient) { }
 
