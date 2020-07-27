@@ -9,3 +9,4 @@ export interface Media {
     GenreId: number, 
     Approved: boolean, 
     Composer: string 
+}
