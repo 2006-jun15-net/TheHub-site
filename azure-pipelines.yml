@@ -16,6 +16,31 @@ steps:
     versionSpec: '12.x'
   displayName: 'Install Node.js'
   
+
+
+- script: |
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+  workingDirectory: $(appDir)
+
+- script: ng test
+    --browsers ChromeHeadless
+    --no-watch
+    --code-coverage
+  displayName: ng test
+  workingDirectory: $(appDir)
+
+# requires some extra work iirc
+- script: npx ng e2e
+  displayName: ng e2e
+  workingDirectory: $(appDir)
+  enabled: false
+
+- script: ng lint
+  displayName: ng lint
+  workingDirectory: $(appDir)
 - task: SonarCloudPrepare@1
   displayName: SonarCloud Prepare
   inputs:
@@ -25,14 +50,10 @@ steps:
     configMode: 'manual'
     cliProjectKey: '2006-jun15-net_TheHub-site'
     cliProjectName: 'The Hub'
-    cliSources: '$(appDir)/src'
-
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --prod
-  displayName: 'npm install and build'
-  workingDirectory: $(appDir)
+    cliSources: '$(appDir)/src,$(appDir)/e2e'
+    extraProperties: |
+      sonar.coverage.exclusions=**/*.spec.ts,$(appDir)/e2e/**/*
+      sonar.typescript.lcov.reportPaths=$(appDir)/coverage/$(appDir)/lcov.info
 
 - task: SonarCloudAnalyze@1
   displayName: SonarCloud Analyze
@@ -44,6 +65,7 @@ steps:
 
 - task: AzureRmWebAppDeployment@4
   displayName: deploy to azure app service
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure subscription 1(a8f0024b-b40d-44a8-8a01-2d63b02fb4c7)'
