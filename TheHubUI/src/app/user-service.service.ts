@@ -6,8 +6,10 @@ import User from './models/user';
   providedIn: 'root'
 })
 export class UserService {
+
   //private baseUrl = "https://project2-thehub.azurewebsites.net";
   private testUrl = 'https://localhost:44320';
+
   constructor(private httpClient : HttpClient) { }
 
   register(newUser: User):Promise<User>{
