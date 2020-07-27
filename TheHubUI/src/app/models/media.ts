@@ -1,10 +1,12 @@
-export interface media{
-    MediaName: string   
-    Rating: number
-    Description: string
-    Composer: string
-    GenreId: number
-    Approved: boolean
-    MediaUrl: string
-    MediaTypesId: number
+
+export interface Media {
+    MediaId: number,
+    Rating: number,
+    MediaName: string,
+    Description: string,
+    MediaTypesId: number, 
+    MediaUrl: string, 
+    GenreId: number, 
+    Approved: boolean, 
+    Composer: string 
 }

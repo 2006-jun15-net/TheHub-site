@@ -1,0 +1,7 @@
+<button (click)="getMediasByMediaType(2)">Movies</button>
+
+<ul *ngFor="let media of mediaList">
+    <li>
+        {{media.mediaName}}
+    </li>
+</ul>
