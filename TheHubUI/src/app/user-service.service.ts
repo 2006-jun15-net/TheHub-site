@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import User from './models/user';
+import {environment} from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import User from './models/user';
 export class UserService {
 
   //private baseUrl = "https://project2-thehub.azurewebsites.net";
-  private testUrl = 'https://localhost:44320';
+ baseUrl: string = environment.noahUrl;
 
   constructor(private httpClient : HttpClient) { }
 
@@ -18,11 +19,11 @@ export class UserService {
         'Content-Type':  'application/json'
       })
     }
-    return this.httpClient.post<User>(`${this.testUrl}api/User/CreateUser`, newUser, httpOptions).toPromise();
+    return this.httpClient.post<User>(`${this.baseUrl}api/User/CreateUser`, newUser, httpOptions).toPromise();
   }
   login(username: string, password: string)
   {
-    return this.httpClient.get<User>(`${this.testUrl}/api/User/login`,{
+    return this.httpClient.get<User>(`${this.baseUrl}/api/User/login`,{
       params: {
         username: username,
         password: password
