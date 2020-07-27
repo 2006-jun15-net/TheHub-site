@@ -1,3 +1,4 @@
+
 export interface Media {
     MediaId: number,
     Rating: number,
@@ -8,4 +9,3 @@ export interface Media {
     GenreId: number, 
     Approved: boolean, 
     Composer: string 
-}
