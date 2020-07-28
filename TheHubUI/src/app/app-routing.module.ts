@@ -4,13 +4,17 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MediaListComponent } from './media-list/media-list.component';
 import { RegisterComponent } from './register/register.component';
+import { ProfileComponent } from './profile/profile.component';
+
 
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "login"},
   {path: "login", component: LoginComponent },
   { path: "media", component: MediaListComponent},
   {path: "register", component: RegisterComponent},
-  {path: "home", component: HomeComponent }
+  {path: "home", component: HomeComponent },
+  {path: "profile", component: ProfileComponent}
+
 ];
 
 @NgModule({
