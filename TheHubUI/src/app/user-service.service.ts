@@ -9,7 +9,8 @@ import {environment} from '../environments/environment';
 export class UserService {
 
   //private baseUrl = "https://project2-thehub.azurewebsites.net";
- baseUrl: string = environment.noahUrl;
+  private testUrl = 'https://localhost:5001';
+
 
   constructor(private httpClient : HttpClient) { }
 

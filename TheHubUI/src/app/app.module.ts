@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 import { MediaListComponent } from './media-list/media-list.component';
+import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegisterComponent } from './register/register.component';
@@ -25,7 +26,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     MediaListComponent,
     RegisterComponent,
     PrintErrorComponent,
+    HomeComponent,
     SidebarComponent
+
   ],
   imports: [
     BrowserModule,
