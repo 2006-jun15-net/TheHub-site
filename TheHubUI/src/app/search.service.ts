@@ -8,10 +8,30 @@ import { Media } from './models/media';
 })
 export class SearchService {
 
-  private testUrl = 'https://localhost:5001/api/Media';
+  private baseUrl = 'https://localhost:5001';
 
-  getMediaTitles(id: number) {
-    return this.http.get<Media>(`${this.testUrl}/${id}`)
+  getMediaTitles(title: string) {
+    return this.http.get<Media>(`${this.baseUrl}/api/Media/title/${title}`)
+    .toPromise();
+  }
+
+  getMediaByGenre(genre: string) {
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/genre/${genre}`)
+    .toPromise();
+  }
+
+  getMediaByReviewCount(numReviews: number) {
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/reviewcount/${numReviews}`)
+    .toPromise();
+  }
+
+  getMediaByRating(rating: number) {
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/rating/${rating}`)
+    .toPromise();
+  }
+
+  getMediaByComposer(composer: string) {
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/composer/${composer}`)
     .toPromise();
   }
 
