@@ -1,0 +1,33 @@
+<div class="container">
+
+<div class="row">
+	<aside class="col-sm-4">
+
+
+<div class="card">
+	
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Filter</h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+			<label class="form-check">
+                <ul *ngFor="let option of options">
+                    <li>
+                        <input class="form-check-input" type="radio" name="option"  
+                        (click)="Filter(option.id)" value={{option.id}}>
+                        <span class="form-check-label">
+                            {{option.name}}
+                        </span>
+                    </li>   
+                </ul>
+			</label>
+			
+			
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+

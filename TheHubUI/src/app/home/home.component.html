@@ -1,0 +1,8 @@
+<h2>Home</h2>
+
+    <input #myInput placeholder="Search" >
+    <button (click)="getMedia(myInput.value)">media</button>
+
+<div *ngIf="searchMedia">
+    {{searchMedia.mediaName}}
+</div> 
