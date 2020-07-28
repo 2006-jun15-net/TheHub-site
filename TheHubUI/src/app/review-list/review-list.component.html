@@ -1,0 +1,28 @@
+<div *ngIf="selectedMedia">
+    {{selectedMedia.mediaName}}
+</div>
+<ul *ngFor="let review of reviews">
+    <li>
+        {{review.content}}
+        <button (click)="getComments(review.ReviewId)">comments</button>
+    </li>
+</ul>
+<button #reviewButton (click)="reviewToggle(reviewButton)">+</button>
+<div *ngIf="reviewFormShow">
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <div>
+            <textarea formControlName="content" rows="5" cols="50" placeholder="Review"></textarea>
+        </div>
+        <div>
+            <ngb-rating [(rate)]="currentRate"></ngb-rating>
+            <span>{{currentRate}}</span>
+        </div>
+        <div>
+            <input type="submit" [disabled]="!reviewForm.valid" value="Post">
+        </div>
+    </form> 
+    <div *ngIf="newReview">
+        <h1>Review Posted</h1>
+    </div>
+    
+</div>

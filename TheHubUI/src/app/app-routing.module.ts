@@ -4,13 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { MediaListComponent } from './media-list/media-list.component';
 import { RegisterComponent } from './register/register.component';
+import { ReviewListComponent } from './review-list/review-list.component';
 
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "login"},
   {path: "login", component: LoginComponent },
   { path: "media", component: MediaListComponent},
   {path: "register", component: RegisterComponent},
-  {path: "home", component: HomeComponent }
+  {path: "home", component: HomeComponent },
+  {path: "media/reviews", component: ReviewListComponent}
 ];
 
 @NgModule({
