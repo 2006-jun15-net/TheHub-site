@@ -8,7 +8,7 @@ import User from './models/user';
 export class UserService {
 
   //private baseUrl = "https://project2-thehub.azurewebsites.net";
-  private testUrl = 'https://localhost:44320';
+  private testUrl = 'https://localhost:5001';
 
   constructor(private httpClient : HttpClient) { }
 
