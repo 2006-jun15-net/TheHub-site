@@ -26,9 +26,14 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/maxcdn.css"
+
             ],
-            "scripts": []
+            "scripts": [
+              "src/profscript1.js",
+              "src/profscript2.js"
+            ]
           },
           "configurations": {
             "production": {
