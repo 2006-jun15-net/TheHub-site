@@ -14,6 +14,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RegisterComponent } from './register/register.component';
 import { PrintErrorComponent } from './print-error/print-error.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { PrintErrorComponent } from './print-error/print-error.component';
     NavbarComponent,
     MediaListComponent,
     RegisterComponent,
-    PrintErrorComponent
+    PrintErrorComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
