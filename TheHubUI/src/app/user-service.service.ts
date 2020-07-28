@@ -9,7 +9,7 @@ import {environment} from '../environments/environment';
 export class UserService {
 
   //private baseUrl = "https://project2-thehub.azurewebsites.net";
-  private testUrl = 'https://localhost:5001';
+  private baseUrl = 'https://localhost:5001';
 
 
   constructor(private httpClient : HttpClient) { }
