@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="margin-bottom: 0px;height: 115px;">
   <div class="container">
-    <a class="navbar-brand" routerLink="">
+    <a class="navbar-brand" routerLink="home">
       <img class="navlogo" src="./assets/images/thehublogo.png" alt="Logo">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="" style="font-size:25px;">Home
+          <a class="nav-link" routerLink="home" style="font-size:25px;">Home
             <span class="sr-only">(current)</span>
           </a>
         </li>
@@ -20,17 +20,19 @@
         
         <div class="topnav nav-item" >
           <a>
-          <select>
+          <select style="font-size: 15px; padding: 6px;">
             <option class="Color1" value="My Account">My Profile</option>
             <option class="Color2" value="Setting">Settings</option>
             <option class="Color3" value="Logout">Logout</option>
           </select>
         </a>
         
-        <input class="nav-item" type="text" placeholder="Search..">
+        <input #myInput class="nav-item" type="text" placeholder="Search titles..">
           
         </div>
-        <button class="topnav" style="color: white; border: none;">Go</button>
+        <button class="topnav goButton" style="color: white;" (click)="getMedia(myInput.value)">
+          <a style="color: white;" routerlink="/media/media.mediaId" >Go</a>  
+        </button>
       </ul>
     </div>
   </div>

@@ -1,12 +1,15 @@
 .form-check-label{
-    padding-left: 20px;
+    padding: 20px;
 }
 ul{
+    padding-top: 20px;
     list-style: none;
     padding-left: 0;
 }
 .title{
     text-align: center;
+    font-size: large;
+
 }
 .card-header{
     background-color:  #373f47ff;
@@ -16,3 +19,15 @@ ul{
     border: 3px solid #34a37b;
 }
 
+.sidenav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 12%;
+    left: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding-bottom: 50%;
+    border: 3px solid #34a37b;
+    font-size: medium;
+  }

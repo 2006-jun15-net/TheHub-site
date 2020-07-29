@@ -1,3 +1,14 @@
+::placeholder{
+  font-size: small; 
+}
+
+.goButton{
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px 15px;
+}
+
 .nav-item{
     margin-left:25px;
     padding-bottom:10px;

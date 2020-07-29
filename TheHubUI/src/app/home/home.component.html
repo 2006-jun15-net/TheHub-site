@@ -1,7 +1,6 @@
-<h2>Home</h2>
-
+<!-- 
 <input #myInput placeholder="Search" >
-<button (click)="getMedia(myInput.value)">media</button>
+<button (click)="getMedia(myInput.value)">media</button> -->
 
 <div *ngIf="searchMedia">
     {{searchMedia.mediaName}}
@@ -22,23 +21,23 @@
     <br/>
 </div> 
 
-<div *ngIf="getItem == 1">
-    <input #myInput placeholder="Search by genre" >
+<div class="search" *ngIf="getItem == 1">
+    <input #myInput placeholder="Search genre" >
     <button (click)="getByGenre(myInput.value)">Submit</button>
 </div>
 
-<div *ngIf="getItem == 2">
-    <input #myInput placeholder="Search by rating" >
+<div class="search" *ngIf="getItem == 2">
+    <input #myInput placeholder="Search rating" >
     <button (click)="getByRating(myInput.value)">Submit</button>
 </div>
 
-<div *ngIf="getItem == 3">
+<div class="search" *ngIf="getItem == 3">
     <input #myInput placeholder="Search by number of Reviews" >
     <button (click)="getByReview(myInput.value)">Submit</button>
 </div>
 
-<div *ngIf="getItem == 4">
-    <input #myInput placeholder="Search by Composer" >
+<div class="search" *ngIf="getItem == 4">
+    <input #myInput placeholder="Search Composer" >
     <button (click)="getByComposer(myInput.value)">Submit</button>
 </div>
 

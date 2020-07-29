@@ -13,8 +13,7 @@ const routes: Routes = [
   { path: "media", component: MediaListComponent},
   {path: "register", component: RegisterComponent},
   {path: "home", component: HomeComponent },
-  {path: "profile", component: ProfileComponent}
-
+  {path: "profile", component: ProfileComponent},
 ];
 
 @NgModule({
