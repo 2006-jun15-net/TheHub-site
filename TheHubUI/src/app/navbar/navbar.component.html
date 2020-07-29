@@ -32,13 +32,10 @@
         </div>
         
         <button class="goButton" style="color: white;" (click)="getMedia(myInput.value)">
-          Go 
+          <a *ngIf="searchMedia" class="topnav" style="color: white;" routerLink="/media/{{searchMedia.mediaId}}">
+            Go 
+          </a>
         </button>
-
-        <div *ngIf="searchMedia">
-          <a class="topnav" style="color: white;" routerLink="/media/{{searchMedia.mediaId}}">
-          </a>  
-        </div>
         
 
       </ul>
