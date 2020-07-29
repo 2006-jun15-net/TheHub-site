@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Media } from '../models/media';
 import { SearchService } from '../search.service';
 import {OktaAuthService} from '@okta/okta-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,7 @@ import {OktaAuthService} from '@okta/okta-angular';
 export class NavbarComponent implements OnInit {
 
   isAuthenticated: boolean = false;
-  constructor(public oktaAuth: OktaAuthService, private mediaService: SearchService) { 
+  constructor(public oktaAuth: OktaAuthService, private mediaService: SearchService, public router:Router) { 
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
     );
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit {
     this.mediaService.getMediaTitles(value)
       .then(medias => {
         this.searchMedia = medias;
-        console.log(this.searchMedia);
+        this.router.navigateByUrl(`/media/${this.searchMedia.mediaId}`);
       })
   }
   

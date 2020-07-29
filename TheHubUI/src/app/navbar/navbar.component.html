@@ -31,14 +31,16 @@
         <input #myInput class="nav-item" type="text" placeholder="Search..">
         </div>
         
+
         <button class="goButton" style="color: white;" (click)="getMedia(myInput.value)">
-          Go 
+            Go 
         </button>
 
         <div *ngIf="searchMedia">
           <a class="topnav" style="color: white;" routerLink="/media/{{searchMedia.mediaId}}">
           </a>  
         </div>
+
 
       </ul>
     </div>
