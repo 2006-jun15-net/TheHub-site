@@ -24,7 +24,6 @@ const routes: Routes = [
   {path: CALLBACK_PATH, component: OktaCallbackComponent}
 ];
 
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
