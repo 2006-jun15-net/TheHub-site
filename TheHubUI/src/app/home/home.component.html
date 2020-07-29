@@ -1,8 +1,68 @@
 <h2>Home</h2>
 
-    <input #myInput placeholder="Search" >
-    <button (click)="getMedia(myInput.value)">media</button>
+<input #myInput placeholder="Search" >
+<button (click)="getMedia(myInput.value)">media</button>
 
 <div *ngIf="searchMedia">
     {{searchMedia.mediaName}}
+    <br/>
+    Rating: {{searchMedia.rating}}
+    <br/>
+    Media Type's Id: {{searchMedia.mediaTypesId}}
+    <br/>
+    Media Id:{{searchMedia.mediaId}}
+    <br/>
+    Genre: {{searchMedia.genreId}}
+    <br/>
+    Composer: {{searchMedia.composer}}
+    <br/>
+    Description: {{searchMedia.description}}
+    <br/>
+    Media Url: {{searchMedia.mediaUrl}}
+    <br/>
 </div> 
+
+<div *ngIf="getItem == 1">
+    <input #myInput placeholder="Search by genre" >
+    <button (click)="getByGenre(myInput.value)">Submit</button>
+</div>
+
+<div *ngIf="getItem == 2">
+    <input #myInput placeholder="Search by rating" >
+    <button (click)="getByRating(myInput.value)">Submit</button>
+</div>
+
+<div *ngIf="getItem == 3">
+    <input #myInput placeholder="Search by number of Reviews" >
+    <button (click)="getByReview(myInput.value)">Submit</button>
+</div>
+
+<div *ngIf="getItem == 4">
+    <input #myInput placeholder="Search by Composer" >
+    <button (click)="getByComposer(myInput.value)">Submit</button>
+</div>
+
+<ul *ngFor="let media of mediaList">
+    <li>
+        {{media.mediaName}}
+        <br/>
+        Rating: {{media.rating}}
+        <br/>
+        Media Type's Id: {{media.mediaTypesId}}
+        <br/>
+        Media Id: {{media.mediaId}}
+        <br/>
+        Genre: {{media.genreId}}
+        <br/>
+        Composer: {{media.composer}}
+        <br/>
+        Description: {{media.description}}
+        <br/>
+        Media Url: {{media.mediaUrl}}
+    </li>
+</ul>
+
+<app-sidebar (filtered)="filter($event)">
+
+
+</app-sidebar>
