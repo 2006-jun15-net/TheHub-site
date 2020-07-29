@@ -20,14 +20,16 @@
         
         <div class="topnav nav-item" >
           <a>
-          <select>
+          <select id="actions">
             <option class="Color1" value="My Account">My Profile</option>
             <option class="Color2" value="Setting">Settings</option>
-            <option class="Color3" value="Logout">Logout</option>
+            <option class="Color3" value="logout">Logout</option>
           </select>
         </a>
         
         <input class="nav-item" type="text" placeholder="Search..">
+
+        <button class="btn btn-primary" value="Logout" (click)="logout()">Logout</button>
           
         </div>
         <button class="button gobutton" style="color: white; border: none;">Go</button>

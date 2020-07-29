@@ -1,0 +1,14 @@
+<div *ngIf="media">
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron-container">
+          <img class="col" style="height: 250px; width: 250px;" src="{{media.mediaUrl}}"/>
+        </div>
+      </div>
+
+    <h2>{{media.mediaName}} Details</h2>
+    <div><span>id: </span>{{media.mediaId}}</div>
+
+</div>
+
+<button (click)="goBack()">go back</button>
