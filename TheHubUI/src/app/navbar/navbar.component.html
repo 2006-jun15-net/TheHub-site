@@ -30,9 +30,17 @@
         <input #myInput class="nav-item" type="text" placeholder="Search titles..">
         <button class="btn btn-primary" value="Logout" (click)="logout()">Logout</button>
         </div>
-        <button class="topnav goButton" style="color: white;" (click)="getMedia(myInput.value)">
-          <a style="color: white;" routerlink="/media/media.mediaId" >Go</a>  
+        
+        <button class="goButton" style="color: white;" (click)="getMedia(myInput.value)">
+          Go 
         </button>
+
+        <div *ngIf="searchMedia">
+          <a class="topnav" style="color: white;" routerLink="/media/{{searchMedia.mediaId}}">
+          </a>  
+        </div>
+        
+
       </ul>
     </div>
   </div>
