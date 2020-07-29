@@ -15,10 +15,10 @@
           </a>
         </li>
         <li class="nav-item" style="font-size:18px">
-          <a class="nav-link" routerLink="/media">Explore</a>
+          <a class="nav-link" *ngIf="isAuthenticated" routerLink="/media">Explore</a>
         </li>
         <li class="nav-item" style="font-size:18px">
-          <a class="nav-link" routerLink="/profile">Profile</a>
+          <a class="nav-link" *ngIf="isAuthenticated" routerLink="/profile">Profile</a>
         </li>
         <li class="nav-item" style="font-size:18px">
           <a class="nav-link" *ngIf="!isAuthenticated" routerLink="/login" style="cursor: pointer;" >Login</a>
@@ -26,13 +26,13 @@
         <li class="nav-item" style="font-size:18px">
           <a class="nav-link" *ngIf="isAuthenticated" value="Logout" style="cursor: pointer;" (click)="logout()" >Logout</a>
         </li>
-        <div class="topnav nav-item" >
+        <div class="topnav nav-item"  >
           
-        <input #myInput class="nav-item" type="text" placeholder="Search..">
+        <input #myInput *ngIf="isAuthenticated" class="nav-item" type="text" placeholder="Search..">
         </div>
         
 
-        <button class="goButton" style="color: white;" (click)="getMedia(myInput.value)">
+        <button class="goButton" *ngIf="isAuthenticated" style="color: white;" (click)="getMedia(myInput.value)">
             Go 
         </button>
 
