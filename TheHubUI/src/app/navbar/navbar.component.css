@@ -3,6 +3,14 @@
     padding-bottom:10px;
   }
 
+  .gobutton {
+    background-color: #35a37c;
+    font-size: 15px;
+    padding: 8px 10px;
+  }
+.nav-link a:hover{
+    background-color: #35a37c;
+}
 .Color1{
     background-color: #35a37c;
     color: white;
@@ -37,6 +45,9 @@
     color: black;
   }
   
+  .topnav button:hover{
+      background-color: #35a37c;
+  }
   /* Style the "active" element to highlight the current page */
   .topnav a.active {
     background-color: #35a37c;
