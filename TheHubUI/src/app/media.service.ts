@@ -14,33 +14,44 @@ import { Media } from './models/media';
 })
 export class MediaService {
 
-  private accessToken: String | undefined = undefined;
+  
   constructor(private http: HttpClient, public oktaAuth: OktaAuthService) { }
 
   private baseUrl: string = "https://project2-thehub.azurewebsites.net";
 
   private mediaControllerUrl = "https://project2-thehub.azurewebsites.net/api/media";
   private testUrl = "https://localhost:44320/api/media";
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                              'Authorization': 'Bearer ' + this.accessToken })
-  };
+  
 
-  getMediaById(id: number)
+  async getMediaById(id: number)
   {
-    return this.http.get<Media>(`${this.baseUrl}/api/media/${id}`).toPromise();
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media>(`${this.baseUrl}/api/media/${id}`, httpOptions).toPromise();
   }
-  getMediaByMediaType(id: number) {
-    return this.http.get<Media[]>(`${this.baseUrl}/api/media/mediaType/${id}`)
-    .toPromise();
+  async getMediaByMediaType(id: number) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media[]>(`${this.baseUrl}/api/media/mediaType/${id}`, httpOptions).toPromise();
   }
 
-  getMediaByMediaId(id: number) {
-    return this.http.get<Media>(`${this.testUrl}/${id}`).toPromise();
+  async getMediaByMediaId(id: number) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media>(`${this.testUrl}/${id}`, httpOptions).toPromise();
   }
   
 
-  async ngOnInit() {
-    this.accessToken = await this.oktaAuth.getAccessToken();
+  ngOnInit() {
+    
   }
 }
