@@ -8,8 +8,9 @@ import {environment} from '../environments/environment';
 })
 export class UserService {
 
-  private baseUrl = environment.noahUrl;
-  // private testUrl = 'https://localhost:5001';
+
+  private baseUrl = "https://project2-thehub.azurewebsites.net";
+  //private baseUrl = 'https://localhost:4200';
 
 
   constructor(private httpClient : HttpClient) { }
@@ -30,5 +31,10 @@ export class UserService {
         password: password
       }
   }).toPromise();
+  }
+  
+  getUser(userid: number)
+  {
+    return this.httpClient.get<User>(`${this.baseUrl}/api/User/${userid}`).toPromise();
   }
 }

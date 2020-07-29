@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileComponent } from './profile/profile.component';
 
 import { MediaListComponent } from './media-list/media-list.component';
 import { HomeComponent } from './home/home.component';
@@ -30,8 +31,8 @@ import { ReviewListComponent } from './review-list/review-list.component';
     PrintErrorComponent,
     HomeComponent,
     SidebarComponent,
-    ReviewListComponent
-
+    ReviewListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
