@@ -11,6 +11,16 @@ import {OktaAuthService} from '@okta/okta-angular';
 })
 export class NavbarComponent implements OnInit {
 
+  isAuthenticated: boolean = false;
+  constructor(public oktaAuth: OktaAuthService) { 
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    );
+  }
+  async ngOnInit() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+
+  }
   searchMedia: Media | null = null;
 
 
@@ -20,11 +30,6 @@ export class NavbarComponent implements OnInit {
         this.searchMedia = medias;
         console.log(this.searchMedia);
       })
-  }
-
-  constructor( private mediaService: SearchService , public oktaAuth: OktaAuthService) { }
-
-  ngOnInit(): void {
   }
   
   logout() {
