@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Media } from '../models/media';
@@ -17,13 +17,22 @@ export class MediaComponent implements OnInit {
   constructor(
     private mediaService: MediaService,
     private route: ActivatedRoute,
-    private location: Location
-    ) { }
+    private location: Location,
+    private router: Router
+    ) {
+      this.router.events.subscribe(event =>{
+          if (event instanceof NavigationEnd)
+          {
+            this.getMediaByMediaId();
+          }
+       })
+     }
 
   
 
   ngOnInit(): void {
     this.getMediaByMediaId();
+    
   }
 
   getMediaByMediaId(): void {

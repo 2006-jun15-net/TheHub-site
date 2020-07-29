@@ -31,6 +31,8 @@ export class ReviewListComponent implements OnInit {
   error: string = '';
   currentRate: number = 0;
 
+  isAuthenticated: boolean = false;
+
   reviewForm = new FormGroup({
     content: new FormControl('', 
     [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
@@ -41,7 +43,11 @@ export class ReviewListComponent implements OnInit {
     private mediaService: MediaService,
     private userService: UserService,
     private oktaAuth: OktaAuthService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { 
+      this.oktaAuth.$authenticationState.subscribe(
+        (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+      );
+    }
 
   async ngOnInit() {
     const userClaims = await this.oktaAuth.getUser();
