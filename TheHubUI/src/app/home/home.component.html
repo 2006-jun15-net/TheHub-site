@@ -4,7 +4,7 @@
 
 <div *ngIf="searchMedia">
     {{searchMedia.mediaName}}
-    <br/>
+    <!-- <br/>
     Rating: {{searchMedia.rating}}
     <br/>
     Media Type's Id: {{searchMedia.mediaTypesId}}
@@ -18,7 +18,7 @@
     Description: {{searchMedia.description}}
     <br/>
     Media Url: {{searchMedia.mediaUrl}}
-    <br/>
+    <br/> -->
 </div> 
 
 <div class="search" *ngIf="getItem == 1">
@@ -37,29 +37,32 @@
 </div>
 
 <div class="search" *ngIf="getItem == 4">
-    <input #myInput placeholder="Search Composer" >
+    <input #myInput placeholder="Search Composer">
     <button (click)="getByComposer(myInput.value)">Submit</button>
 </div>
 
-<ul *ngFor="let media of mediaList">
-    <li>
-        {{media.mediaName}}
-        <br/>
-        Rating: {{media.rating}}
-        <br/>
-        Media Type's Id: {{media.mediaTypesId}}
-        <br/>
-        Media Id: {{media.mediaId}}
-        <br/>
-        Genre: {{media.genreId}}
-        <br/>
-        Composer: {{media.composer}}
-        <br/>
-        Description: {{media.description}}
-        <br/>
-        Media Url: {{media.mediaUrl}}
-    </li>
-</ul>
+<div>
+    <ul class="search" *ngFor="let media of mediaList">
+        <li>
+            {{media.mediaName}}
+            <!-- <br/>
+            Rating: {{media.rating}}
+            <br/>
+            Media Type's Id: {{media.mediaTypesId}}
+            <br/>
+            Media Id: {{media.mediaId}}
+            <br/>
+            Genre: {{media.genreId}}
+            <br/>
+            Composer: {{media.composer}}
+            <br/>
+            Description: {{media.description}}
+            <br/>
+            Media Url: {{media.mediaUrl}} -->
+        </li>
+    </ul>
+</div>
+
 
 <app-sidebar (filtered)="filter($event)">
 

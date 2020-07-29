@@ -3,8 +3,9 @@
 }
 
 .search{
-  padding-left: 500px;
+  /* padding-left: 500px; */
   padding-top: 50px;
+  text-align: center;
 }
 
 input{
@@ -12,9 +13,11 @@ input{
   background-color: white;
   border-color: darkgray;
   font-size: 17px;
+  border-radius: 6px;
 }
 
 button{
+  border-radius: 6px;
   border: none;
   margin-left: 6px;
   padding: 11px;
