@@ -28,15 +28,15 @@
         </li>
         <div class="topnav nav-item"  >
           
-        <input #myInput *ngIf="isAuthenticated" class="nav-item" type="text" placeholder="Search..">
+        <input #myInput  class="nav-item" type="text" placeholder="Search..">
         </div>
         
 
-        <button class="goButton" *ngIf="isAuthenticated" style="color: white;" (click)="getMedia(myInput.value)">
+        <button class="goButton"  style="color: white;" (click)="getMedia(myInput.value)">
             Go 
         </button>
 
-        <div *ngIf="searchMedia">
+        <div *ngIf="searchMedia" >
           <a class="topnav" style="color: white;" routerLink="/media/{{searchMedia.mediaId}}">
           </a>  
         </div>
