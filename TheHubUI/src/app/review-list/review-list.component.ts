@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+
 import {Media} from '../models/media';
 import Review from '../models/review';
 import Comment from '../models/comment';
 
 import {ReviewService} from '../review.service';
 import { MediaService } from '../media.service';
+import { UserService } from '../user-service.service';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { OktaAuthService } from '@okta/okta-angular';
+
 @Component({
   selector: 'app-review-list',
   templateUrl: './review-list.component.html',
@@ -18,7 +23,8 @@ export class ReviewListComponent implements OnInit {
   reviews: Review[] | null = null;
   comments: Comment[] | null = null;
 
-  UserId: number | null = null;
+  UserEmail: string | undefined = "";
+  UserId: number | undefined = undefined;
   reviewId: number = 0;
   reviewFormShow: boolean = false;
   reviewButton: string = "Add Review";
@@ -32,11 +38,19 @@ export class ReviewListComponent implements OnInit {
   });
   
   constructor(private reviewService: ReviewService, 
-    private mediaService: MediaService) { }
+    private mediaService: MediaService,
+    private userService: UserService,
+    private oktaAuth: OktaAuthService,
+    private route: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    this.getMedia(1)
-    this.reloadReviews(1);
+  async ngOnInit() {
+    const userClaims = await this.oktaAuth.getUser();
+    if(userClaims){
+      this.UserEmail = userClaims.email;
+    }
+    
+    this.getMedia()
+    this.reloadReviews();
     this.getUser();
   }
   reviewToggle(button: HTMLElement)
@@ -61,7 +75,7 @@ export class ReviewListComponent implements OnInit {
       .then(review => {
         console.log('success');
         console.log(review);
-        this.reloadReviews(1);
+        this.reloadReviews();
       })
       .catch(error => {
         this.error = error.toString();
@@ -84,46 +98,66 @@ export class ReviewListComponent implements OnInit {
       console.log(error);
     })
   }
-  getMedia(id: number)
+  getMedia()
   {
-    this.mediaService.getMediaById(id)
-    .then(media => {
-      this.selectedMedia = media;
-      console.log(this.selectedMedia);
-    })
-    .catch(error => {
-      this.error = error.toString();
-      console.log(error);
-    })
-  }
-  reloadReviews(id: number)
-  {
-    this.reviewService.getReviewByMediaId(id)
-    .then(reviews => {
-      this.reviews = reviews;
-      console.log(reviews);
-    })
-    .catch(error => {
-      this.error = error.toString();
-      console.log(error);
-    })
-  }
-  getUser()
-  {
-    //get user from login credentials here
-    this.UserId = 1;
-  }
-  Like(reviewId: number)
-  {
-    if(this.UserId)
-    {
-      this.reviewService.addReviewLike(reviewId,this.UserId)
-      .then(() => this.reloadReviews(1))
-      .catch(error =>{
+    let idString = this.route.snapshot.paramMap.get('id');
+    if (idString){
+      let id = +idString;
+      this.mediaService.getMediaById(id)
+      .then(media => {
+        this.selectedMedia = media;
+        console.log(this.selectedMedia);
+      })
+      .catch(error => {
         this.error = error.toString();
         console.log(error);
       })
     }
+  }
+  reloadReviews()
+  {
+    let idString = this.route.snapshot.paramMap.get('id');
+    if (idString){
+      let id = +idString;
+      this.reviewService.getReviewByMediaId(id)
+      .then(reviews => {
+        this.reviews = reviews;
+        console.log(reviews);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error);
+      })
+    }
+  }
+
+
+
+  getUser()
+  {
+    //get user from login credentials here
+    if(this.UserEmail)
+    {
+      this.userService.getUser(this.UserEmail)
+      .then(user => {
+        this.UserId = user.userId;
+      })
+    }
     
   }
-}
+
+  
+  Like(reviewId: number)
+  {
+      if(this.UserId)
+      {
+        this.reviewService.addReviewLike(reviewId,this.UserId)
+        .then(() => this.reloadReviews())
+        .catch(error =>{
+          this.error = error.toString();
+          console.log(error);
+        })
+      }
+    }
+  }
+

@@ -33,8 +33,12 @@ export class UserService {
   }).toPromise();
   }
   
-  getUser(userid: number)
+  getUser(userEmail: string)
   {
-    return this.httpClient.get<User>(`${this.baseUrl}/api/User/${userid}`).toPromise();
+    return this.httpClient.get<User>(`${this.baseUrl}/api/User`, {
+      params:{
+        email: userEmail
+      }
+    }).toPromise();
   }
 }

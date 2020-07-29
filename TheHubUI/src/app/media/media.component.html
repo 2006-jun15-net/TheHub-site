@@ -1,13 +1,19 @@
 <div *ngIf="media">
 
     <div class="jumbotron jumbotron-fluid">
-        <div class="jumbotron-container">
-          <img class="col" style="height: 250px; width: 250px;" src="{{media.mediaUrl}}"/>
-        </div>
+      <div class="jumbotron-container">
+        <img class="col" style="height: 250px; width: 250px;" src="{{media.mediaUrl}}"/>
       </div>
+    </div>
 
-    <h2>{{media.mediaName}} Details</h2>
-    <div><span>id: </span>{{media.mediaId}}</div>
+    <p>ID: {{media.mediaId}}</p>
+    <h2>{{media.mediaName}}</h2>
+    <h4>Composer: {{media.composer}}</h4>
+    <h5>Genre: {{media.genreId}}</h5>
+    <h5>Rating: {{media.rating}}/10</h5>
+    <p>{{media.description}}</p>
+
+    <app-review-list></app-review-list>
 
 </div>
 
