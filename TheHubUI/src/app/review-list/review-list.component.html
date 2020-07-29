@@ -1,10 +1,24 @@
 <div *ngIf="selectedMedia">
     {{selectedMedia.mediaName}}
 </div>
-<ul *ngFor="let review of reviews">
-    <li>
-        {{review.content}}
-        <button (click)="getComments(review.ReviewId)">comments</button>
+<h1>REVIEWS</h1>
+<ul *ngFor="let review of reviews" class="list-group">
+    <li class="list-group-item">
+        <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
+        <h4>{{review.reviewDate | date:'medium'}}</h4>
+        <h4>Likes: {{review.Likes}}</h4>
+        <span><button (click)="Like(review.reviewId)">Like</button></span>
+        <br>
+        <button (click)="getComments(review.reviewId)">comments</button>
+        <div *ngIf="comments && reviewId===review.reviewId">
+            <ul *ngFor="let comment of comments" class="list-group">
+                <li>
+                    <h3>{{comment.content}}</h3>
+                    <h4>{{comment.date | date:'medium'}}</h4>
+                    <h4>Likes: {{comment.likes}}</h4>    
+                </li>
+            </ul>
+        </div>
     </li>
 </ul>
 <button #reviewButton (click)="reviewToggle(reviewButton)">+</button>
@@ -14,15 +28,12 @@
             <textarea formControlName="content" rows="5" cols="50" placeholder="Review"></textarea>
         </div>
         <div>
-            <ngb-rating [(rate)]="currentRate"></ngb-rating>
+            <ngb-rating formControlName="rating" [(rate)]="currentRate"></ngb-rating>
             <span>{{currentRate}}</span>
         </div>
         <div>
             <input type="submit" [disabled]="!reviewForm.valid" value="Post">
         </div>
     </form> 
-    <div *ngIf="newReview">
-        <h1>Review Posted</h1>
-    </div>
     
 </div>

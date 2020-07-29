@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Review from './models/review';
+import Comment from './models/comment';
 import {environment} from '../environments/environment';
 
 @Injectable({
@@ -16,5 +17,16 @@ export class ReviewService {
   {
     return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/media/${id}`).toPromise(); 
   }
-  
+  addReview(review: Review)
+  {
+    return this.httpClient.post<Review>(`${this.baseUrl}/api/review/CreateReview`, review).toPromise();
+  }
+  getComments(id: number)
+  {
+    return this.httpClient.get<Comment[]>(`${this.baseUrl}/api/review/${id}/comments`).toPromise(); 
+  }
+  addReviewLike(reviewId: number, userId: number)
+  {
+    return this.httpClient.post(`${this.baseUrl}/api/review/like/${reviewId}/${userId}`, null).toPromise();
+  }
 }

@@ -5,7 +5,7 @@ import Comment from '../models/comment';
 
 import {ReviewService} from '../review.service';
 import { MediaService } from '../media.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Validators, FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-review-list',
   templateUrl: './review-list.component.html',
@@ -18,21 +18,26 @@ export class ReviewListComponent implements OnInit {
   reviews: Review[] | null = null;
   comments: Comment[] | null = null;
 
+  UserId: number | null = null;
+  reviewId: number = 0;
   reviewFormShow: boolean = false;
   reviewButton: string = "Add Review";
   error: string = '';
   currentRate: number = 0;
 
-  reviewForm = this.fb.group({
-    content:['', [Validators.required, Validators.minLength(5), Validators.maxLength(100)]],
+  reviewForm = new FormGroup({
+    content: new FormControl('', 
+    [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
+     rating: new FormControl(0)
   });
+  
   constructor(private reviewService: ReviewService, 
-    private mediaService: MediaService,
-    private fb: FormBuilder ) { }
+    private mediaService: MediaService) { }
 
   ngOnInit(): void {
     this.getMedia(1)
-    this.getReviews(1);
+    this.reloadReviews(1);
+    this.getUser();
   }
   reviewToggle(button: HTMLElement)
   {
@@ -49,11 +54,35 @@ export class ReviewListComponent implements OnInit {
   }
   onSubmit(){
     this.newReview = <Review>this.reviewForm.value;
-    this.newReview.Rating = this.currentRate;
+    if(this.selectedMedia && this.UserId){
+      this.newReview.mediaId = this.selectedMedia.mediaId;
+      this.newReview.userId = this.UserId;
+      this.reviewService.addReview(this.newReview)
+      .then(review => {
+        console.log('success');
+        console.log(review);
+        this.reloadReviews(1);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error)
+      });
+      this.reviewForm.reset();
+    }
+    
   }
   getComments(id: number)
   {
-    
+    this.reviewId = id;
+    this.reviewService.getComments(id)
+    .then(comments => {
+      this.comments = comments;
+      console.log(comments);
+    })
+    .catch(error => {
+      this.error = error.toString();
+      console.log(error);
+    })
   }
   getMedia(id: number)
   {
@@ -67,7 +96,7 @@ export class ReviewListComponent implements OnInit {
       console.log(error);
     })
   }
-  getReviews(id: number)
+  reloadReviews(id: number)
   {
     this.reviewService.getReviewByMediaId(id)
     .then(reviews => {
@@ -79,5 +108,22 @@ export class ReviewListComponent implements OnInit {
       console.log(error);
     })
   }
-
+  getUser()
+  {
+    //get user from login credentials here
+    this.UserId = 1;
+  }
+  Like(reviewId: number)
+  {
+    if(this.UserId)
+    {
+      this.reviewService.addReviewLike(reviewId,this.UserId)
+      .then(() => this.reloadReviews(1))
+      .catch(error =>{
+        this.error = error.toString();
+        console.log(error);
+      })
+    }
+    
+  }
 }
