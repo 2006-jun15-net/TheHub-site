@@ -47,7 +47,7 @@ export class MediaService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
                                 'Authorization': 'Bearer ' + accessToken })
     };
-    return this.http.get<Media>(`${this.testUrl}/${id}`, httpOptions).toPromise();
+    return this.http.get<Media>(`${this.baseUrl}/api/Media/${id}`, httpOptions).toPromise();
   }
   
 

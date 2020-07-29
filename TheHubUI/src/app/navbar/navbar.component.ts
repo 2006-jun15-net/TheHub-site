@@ -20,7 +20,6 @@ export class NavbarComponent implements OnInit {
         this.searchMedia = medias;
         console.log(this.searchMedia);
       })
-      
   }
 
   constructor( private mediaService: SearchService , public oktaAuth: OktaAuthService) { }
