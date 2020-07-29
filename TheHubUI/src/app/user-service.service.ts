@@ -13,7 +13,9 @@ export class UserService {
   private testUrl = 'https://localhost:5001';
   //private nonMacUrl = 'https://localhost:4200';
 
-  constructor(private httpClient : HttpClient, private oktaAuth: OktaAuthService) { }
+
+  constructor(private httpClient : HttpClient, public oktaAuth: OktaAuthService) { }
+
 
   register(newUser: User):Promise<User>{
     const httpOptions = {
@@ -42,6 +44,7 @@ export class UserService {
         'Authorization': 'Bearer ' + accessToken
       }),
       params: new HttpParams().set('email', userEmail)
+
     };
     return this.httpClient.get<User>(`${this.baseUrl}/api/User`, httpOptions).toPromise();
   }

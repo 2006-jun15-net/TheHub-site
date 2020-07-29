@@ -19,7 +19,6 @@ const routes: Routes = [
   {path: "home", component: HomeComponent },
   {path: "profile", component: ProfileComponent},
   { path: 'media/:id', component: MediaComponent},
-  {path: "media/reviews", component: ReviewListComponent},
   {path: "profile", component: ProfileComponent},
   {path: CALLBACK_PATH, component: OktaCallbackComponent}
 ];

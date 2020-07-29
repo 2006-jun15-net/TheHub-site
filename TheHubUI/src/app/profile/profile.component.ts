@@ -14,25 +14,35 @@ import User from '../models/user';
 export class ProfileComponent implements OnInit {
 
   user: User | null = null;
+  UserEmail: string | undefined = "";
+ 
+  constructor(
+    private userService: UserService, 
+    public oktaAuth: OktaAuthService
+    ) {
+      
+     }
 
-  constructor(private userService: UserService, public oktaAuth: OktaAuthService) { }
+     async ngOnInit() {
+      const userClaims = await this.oktaAuth.getUser();
+      if(userClaims){
+        this.UserEmail = userClaims.email;
+      }
+      
+      this.getUser();
+    }
 
   getUser(): void{
-
-  //  this.userService.getUser().then(user => {
-  //    this.user = user;
-  //  })
+    if(this.UserEmail)
+    {
+      this.userService.getUser(this.UserEmail)
+      .then(user => {
+        this.user = user;
+      })
+    }
   }
 
  
-  async ngOnInit() {
-    // returns an array of claims
-    const userClaims = await this.oktaAuth.getUser();
 
-    // user name is exposed directly as property
-   
-    this.getUser();
-
-  }
 
 }
