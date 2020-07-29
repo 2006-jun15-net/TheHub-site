@@ -31,10 +31,9 @@
         <button class="btn btn-primary" value="Logout" (click)="logout()">Logout</button>
         </div>
         
+
         <button class="goButton" style="color: white;" (click)="getMedia(myInput.value)">
-          <a *ngIf="searchMedia" class="topnav" style="color: white;" routerLink="/media/{{searchMedia.mediaId}}">
             Go 
-          </a>
         </button>
         
 

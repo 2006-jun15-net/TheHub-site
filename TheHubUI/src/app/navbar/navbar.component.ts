@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Media } from '../models/media';
 import { SearchService } from '../search.service';
 import {OktaAuthService} from '@okta/okta-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -18,11 +19,11 @@ export class NavbarComponent implements OnInit {
     this.mediaService.getMediaTitles(value)
       .then(medias => {
         this.searchMedia = medias;
-        console.log(this.searchMedia);
+        this.router.navigateByUrl(`/media/${this.searchMedia.mediaId}`);
       })
   }
 
-  constructor( private mediaService: SearchService , public oktaAuth: OktaAuthService) { }
+  constructor( private mediaService: SearchService , public oktaAuth: OktaAuthService, public router:Router) { }
 
   ngOnInit(): void {
   }
