@@ -12,7 +12,7 @@ import {OktaAuthService} from '@okta/okta-angular';
 export class NavbarComponent implements OnInit {
 
   isAuthenticated: boolean = false;
-  constructor(public oktaAuth: OktaAuthService) { 
+  constructor(public oktaAuth: OktaAuthService, private mediaService: SearchService) { 
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
     );
