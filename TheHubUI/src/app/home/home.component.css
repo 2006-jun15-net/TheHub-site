@@ -1,3 +1,33 @@
+::placeholder{
+  font-size: small; 
+}
+
+.search{
+  /* padding-left: 500px; */
+  padding-top: 50px;
+  text-align: center;
+}
+
+input{
+  padding: 6px;
+  background-color: white;
+  border-color: darkgray;
+  font-size: 17px;
+  border-radius: 6px;
+}
+
+button{
+  border-radius: 6px;
+  border: none;
+  margin-left: 6px;
+  padding: 11px;
+  background-color: #373f47ff;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  font-size: small;
+}
+
 .carousel-item {
     height: 100vh;
     min-height: 350px;
@@ -37,3 +67,5 @@
       font-size: 60px;
       margin-left: 2rem;
   }
+
+  

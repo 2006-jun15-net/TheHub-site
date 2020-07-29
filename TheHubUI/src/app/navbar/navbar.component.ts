@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Media } from '../models/media';
+import { SearchService } from '../search.service';
 import {OktaAuthService} from '@okta/okta-angular';
 
 @Component({
@@ -18,6 +20,9 @@ export class NavbarComponent implements OnInit {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
   }
 
+  ngOnInit(): void {
+  }
+  
   logout() {
     this.oktaAuth.logout('/');
   }

@@ -8,6 +8,7 @@ import { Media } from './models/media';
 })
 export class SearchService {
 
+    // private baseUrl = "https://project2-thehub.azurewebsites.net";
   private baseUrl = 'https://localhost:5001';
 
   getMediaTitles(title: string) {
