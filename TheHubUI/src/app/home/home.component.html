@@ -4,21 +4,6 @@
 
 <div *ngIf="searchMedia">
     {{searchMedia.mediaName}}
-    <!-- <br/>
-    Rating: {{searchMedia.rating}}
-    <br/>
-    Media Type's Id: {{searchMedia.mediaTypesId}}
-    <br/>
-    Media Id:{{searchMedia.mediaId}}
-    <br/>
-    Genre: {{searchMedia.genreId}}
-    <br/>
-    Composer: {{searchMedia.composer}}
-    <br/>
-    Description: {{searchMedia.description}}
-    <br/>
-    Media Url: {{searchMedia.mediaUrl}}
-    <br/> -->
 </div> 
 
 <div class="search" *ngIf="getItem == 1">
@@ -49,26 +34,18 @@
                 <button> Details and Reviews
                 </button>
             </a>
-            <!-- <br/>
-            Rating: {{media.rating}}
-            <br/>
-            Media Type's Id: {{media.mediaTypesId}}
-            <br/>
-            Media Id: {{media.mediaId}}
-            <br/>
-            Genre: {{media.genreId}}
-            <br/>
-            Composer: {{media.composer}}
-            <br/>
-            Description: {{media.description}}
-            <br/>
-            Media Url: {{media.mediaUrl}} -->
         </li>
     </ul>
 </div>
 
 
-<app-sidebar (filtered)="filter($event)">
+<app-sidebar (filtered)="filter($event)"></app-sidebar>
 
-
-</app-sidebar>
+<div>
+    <h2 class="search"> Your Feed</h2>
+    <ul *ngFor="let review of reviews">
+        <li class="list-group-item">
+            <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
+        </li>
+    </ul>
+</div>

@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { Media } from '../models/media';
 import { SearchService } from '../search.service';
-
-import { SidebarComponent } from '../sidebar/sidebar.component';
+import {ReviewService} from '../review.service';
+import Review from '../models/review';
+import { ActivatedRoute } from '@angular/router';
+import { OktaAuthService } from '@okta/okta-angular';
+import { UserService } from '../user-service.service';
 
 @Component({
   selector: 'app-home',
@@ -18,9 +21,52 @@ export class HomeComponent implements OnInit {
 
   getItem: number = 0;
 
-  constructor( private mediaService: SearchService ) { }
+  reviews: Review[] | null = null;
+  UserEmail: string | undefined = "";
+  error: string = '';
+  UserId: number | undefined = undefined;
+
+
+
+  constructor( private mediaService: SearchService,
+    private reviewService: ReviewService,
+    private route: ActivatedRoute,
+    private oktaAuth: OktaAuthService,
+    private userService: UserService
+    ) { }
   
-  ngOnInit(): void {
+  async ngOnInit() {
+    const userClaims = await this.oktaAuth.getUser();
+    if(userClaims){
+      this.UserEmail = userClaims.email;
+    }
+    this.getUserId();
+    this.feed();
+  }
+
+  getUserId(){
+    if(this.UserEmail)
+    {
+      this.userService.getUser(this.UserEmail)
+      .then(user => {
+        this.UserId = user.userId;
+      })
+    }
+  }
+
+  // the feed
+  feed(){
+    if (this.UserId){
+      this.reviewService.getFeed(this.UserId)
+      .then(reviews => {
+        this.reviews = reviews;
+        console.log(reviews);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error);
+      })
+    }
   }
 
   getMedia(value: string){
@@ -81,5 +127,7 @@ export class HomeComponent implements OnInit {
         console.log(this.mediaList);
       })
   }
+
+
 
 }

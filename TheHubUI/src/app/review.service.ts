@@ -22,6 +22,17 @@ export class ReviewService {
     };
     return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/media/${id}`, httpOptions).toPromise(); 
   }
+
+  async getFeed(id: number)
+  {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/${id}/getfeed`, httpOptions).toPromise(); 
+  }
+
   async addReview(review: Review)
   {
     const accessToken = await this.oktaAuth.getAccessToken();
