@@ -1,39 +1,66 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Media } from './models/media';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  private baseUrl = 'https://localhost:5001';
+    private baseUrl = "https://project2-thehub.azurewebsites.net";
+  // private baseUrl = 'https://localhost:5001';
 
-  getMediaTitles(title: string) {
-    return this.http.get<Media>(`${this.baseUrl}/api/Media/title/${title}`)
+  async getMediaTitles(title: string) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media>(`${this.baseUrl}/api/Media/title/${title}`, httpOptions)
     .toPromise();
   }
 
-  getMediaByGenre(genre: string) {
-    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/genre/${genre}`)
+  async getMediaByGenre(genre: string) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/genre/${genre}`, httpOptions)
     .toPromise();
   }
 
-  getMediaByReviewCount(numReviews: number) {
-    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/reviewcount/${numReviews}`)
+  async getMediaByReviewCount(numReviews: number) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/reviewcount/${numReviews}`, httpOptions)
     .toPromise();
   }
 
-  getMediaByRating(rating: number) {
-    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/rating/${rating}`)
+  async getMediaByRating(rating: number) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/rating/${rating}`, httpOptions)
     .toPromise();
   }
 
-  getMediaByComposer(composer: string) {
-    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/composer/${composer}`)
+  async getMediaByComposer(composer: string) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<Media[]>(`${this.baseUrl}/api/Media/composer/${composer}`, httpOptions)
     .toPromise();
   }
 
-  constructor(  private http: HttpClient ) { }
+  constructor(  private http: HttpClient, public oktaAuth: OktaAuthService ) { }
 }
