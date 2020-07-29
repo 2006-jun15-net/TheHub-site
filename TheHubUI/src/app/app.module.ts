@@ -56,8 +56,8 @@ const config =
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
-    OktaAuthModule,
+    CommonModule,
+    OktaAuthModule
   ],
   providers: [{provide: OKTA_CONFIG, useValue: config}],
   bootstrap: [AppComponent]
