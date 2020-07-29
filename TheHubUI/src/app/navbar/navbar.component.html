@@ -20,15 +20,15 @@
         
         <div class="topnav nav-item" >
           <a>
-          <select style="font-size: 15px; padding: 6px;">
+            <select style="font-size: 15px; padding: 6px;" id="actions">
             <option class="Color1" value="My Account">My Profile</option>
             <option class="Color2" value="Setting">Settings</option>
-            <option class="Color3" value="Logout">Logout</option>
+            <option class="Color3" value="logout">Logout</option>
           </select>
         </a>
         
         <input #myInput class="nav-item" type="text" placeholder="Search titles..">
-          
+        <button class="btn btn-primary" value="Logout" (click)="logout()">Logout</button>
         </div>
         <button class="topnav goButton" style="color: white;" (click)="getMedia(myInput.value)">
           <a style="color: white;" routerlink="/media/media.mediaId" >Go</a>  

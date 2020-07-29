@@ -1,7 +1,23 @@
-<button (click)="getMediasByMediaType(2)">Movies</button>
+<div class="button-wrapper">
+    <button class="btn btn-dark" (click)="getMediasByMediaType(1)">Video Games</button>
+    <button class="btn btn-dark" (click)="getMediasByMediaType(2)">Movies</button>
+    <button class="btn btn-dark" (click)="getMediasByMediaType(3)">Albums</button>
+    <button class="btn btn-dark" (click)="getMediasByMediaType(4)">Books</button>
+    <button class="btn btn-dark" (click)="getMediasByMediaType(5)">TV Shows</button>
+</div>
 
-<ul *ngFor="let media of mediaList">
-    <li>
-        {{media.mediaName}}
-    </li>
-</ul>
+<div class="media-list-wrapper">
+
+<div *ngFor="let media of mediaList" class="">
+    
+    <div class="card" style="width: 18rem;">
+        <img src="{{media.mediaUrl}}" class="card-img-top" alt="media-image">
+        <div class="card-body">
+          <h5 class="card-title">{{media.mediaName}}</h5>
+          <p class="card-text overflow-hidden" style="height: 100px;">{{media.description}}</p>
+          <a routerLink="/media/{{media.mediaId}}" class="btn btn-primary">Details and Reviews</a>
+        </div>
+    </div>
+
+</div>
+</div>
