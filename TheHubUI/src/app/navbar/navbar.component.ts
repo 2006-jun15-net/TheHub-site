@@ -8,12 +8,15 @@ import {OktaAuthService} from '@okta/okta-angular';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor(public oktaAuth: OktaAuthService) { }
-  ngOnInit(): void {
+  isAuthenticated: boolean = false;
+  constructor(public oktaAuth: OktaAuthService) { 
+    this.oktaAuth.$authenticationState.subscribe(
+      (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
+    );
   }
-
-
+  async ngOnInit() {
+    this.isAuthenticated = await this.oktaAuth.isAuthenticated();
+  }
 
   logout() {
     this.oktaAuth.logout('/');
