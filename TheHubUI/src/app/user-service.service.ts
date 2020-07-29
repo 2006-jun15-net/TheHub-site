@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import User from './models/user';
 import {environment} from '../environments/environment';
+import { OktaAuthService } from '@okta/okta-angular';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,7 @@ export class UserService {
   private testUrl = 'https://localhost:5001';
   //private nonMacUrl = 'https://localhost:4200';
 
-
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient : HttpClient, private oktaAuth: OktaAuthService) { }
 
   register(newUser: User):Promise<User>{
     const httpOptions = {
@@ -33,12 +33,16 @@ export class UserService {
   }).toPromise();
   }
   
-  getUser(userEmail: string)
+  async getUser(userEmail: string)
   {
-    return this.httpClient.get<User>(`${this.baseUrl}/api/User`, {
-      params:{
-        email: userEmail
-      }
-    }).toPromise();
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+      }),
+      params: new HttpParams().set('email', userEmail)
+    };
+    return this.httpClient.get<User>(`${this.baseUrl}/api/User`, httpOptions).toPromise();
   }
 }

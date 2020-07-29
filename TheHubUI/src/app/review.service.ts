@@ -31,6 +31,15 @@ export class ReviewService {
     };
     return this.httpClient.post<Review>(`${this.baseUrl}/api/review/CreateReview`, review, httpOptions).toPromise();
   }
+  async addComment(comment: Comment)
+  {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.httpClient.post<Comment>(`${this.baseUrl}/api/review/AddComment`, comment, httpOptions).toPromise();
+  }
   async getComments(id: number)
   {
     const accessToken = await this.oktaAuth.getAccessToken();

@@ -21,12 +21,14 @@ export class ReviewListComponent implements OnInit {
   selectedMedia: Media | null = null;
   newReview: Review | null = null;
   reviews: Review[] | null = null;
+  newComment: Comment | null = null;
   comments: Comment[] | null = null;
 
   UserEmail: string | undefined = "";
   UserId: number | undefined = undefined;
   reviewId: number = 0;
   reviewFormShow: boolean = false;
+  commentFormShow: boolean = false;
   reviewButton: string = "Add Review";
   error: string = '';
   currentRate: number = 0;
@@ -36,17 +38,24 @@ export class ReviewListComponent implements OnInit {
     [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
      rating: new FormControl(0)
   });
+  commentForm = new FormGroup({
+    content: new FormControl('', 
+    [Validators.required, Validators.minLength(5), Validators.maxLength(100)])
+  });
+  
   
   constructor(private reviewService: ReviewService, 
     private mediaService: MediaService,
     private userService: UserService,
     private oktaAuth: OktaAuthService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute) { 
+    }
 
   async ngOnInit() {
     const userClaims = await this.oktaAuth.getUser();
     if(userClaims){
       this.UserEmail = userClaims.email;
+      console.log(this.UserEmail);
     }
     
     this.getMedia()
@@ -66,7 +75,41 @@ export class ReviewListComponent implements OnInit {
       button.innerHTML = "-";
     }
   }
-  onSubmit(){
+  commentToggle(button: HTMLElement)
+  {
+    if(this.commentFormShow)
+    {
+      this.commentFormShow = false;
+      button.innerHTML = "+";
+    }
+    else
+    {
+      this.commentFormShow = true;
+      button.innerHTML = "-";
+    }
+  }
+  onSubmitComment(reviewId: number)
+  {
+    this.newComment = <Comment>this.commentForm.value;
+    if(this.UserId){
+      this.newComment.reviewId = reviewId;
+      this.newComment.userId = this.UserId;
+      console.log(this.newComment);
+      this.reviewService.addComment(this.newComment)
+      .then(comment => {
+        console.log('success');
+        console.log(comment);
+        this.getComments(reviewId);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error)
+      });
+      this.commentForm.reset();
+    }
+  
+  }
+  onSubmitReview(){
     this.newReview = <Review>this.reviewForm.value;
     if(this.selectedMedia && this.UserId){
       this.newReview.mediaId = this.selectedMedia.mediaId;
@@ -130,8 +173,6 @@ export class ReviewListComponent implements OnInit {
       })
     }
   }
-
-
 
   getUser()
   {
