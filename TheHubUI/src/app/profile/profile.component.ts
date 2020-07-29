@@ -19,9 +19,9 @@ export class ProfileComponent implements OnInit {
 
   getUser(): void{
 
-   this.userService.getUser(2).then(user => {
-     this.user = user;
-   })
+  //  this.userService.getUser().then(user => {
+  //    this.user = user;
+  //  })
   }
 
  
