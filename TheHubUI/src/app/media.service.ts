@@ -19,6 +19,8 @@ export class MediaService {
 
   private baseUrl: string = "https://project2-thehub.azurewebsites.net";
 
+  private mediaControllerUrl = "https://project2-thehub.azurewebsites.net/api/media";
+  private testUrl = "https://localhost:44320/api/media";
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',
                               'Authorization': 'Bearer ' + this.accessToken })
@@ -31,6 +33,10 @@ export class MediaService {
   getMediaByMediaType(id: number) {
     return this.http.get<Media[]>(`${this.baseUrl}/api/media/mediaType/${id}`)
     .toPromise();
+  }
+
+  getMediaByMediaId(id: number) {
+    return this.http.get<Media>(`${this.testUrl}/${id}`).toPromise();
   }
   
 

@@ -8,9 +8,9 @@ import {environment} from '../environments/environment';
 })
 export class UserService {
 
-
   private baseUrl = "https://project2-thehub.azurewebsites.net";
-  //private baseUrl = 'https://localhost:4200';
+  private testUrl = 'https://localhost:5001';
+  //private nonMacUrl = 'https://localhost:4200';
 
 
   constructor(private httpClient : HttpClient) { }
