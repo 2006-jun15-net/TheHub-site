@@ -7,6 +7,9 @@ import { RegisterComponent } from './register/register.component';
 import { ReviewListComponent } from './review-list/review-list.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { OktaCallbackComponent } from '@okta/okta-angular';
+
+const CALLBACK_PATH = 'implicit/callback';
 
 const routes: Routes = [
   {path:  "", pathMatch:  "full",redirectTo:  "login"},
@@ -15,8 +18,10 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "home", component: HomeComponent },
   {path: "media/reviews", component: ReviewListComponent},
-  {path: "profile", component: ProfileComponent}
+  {path: "profile", component: ProfileComponent},
+  {path: CALLBACK_PATH, component: OktaCallbackComponent}
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
