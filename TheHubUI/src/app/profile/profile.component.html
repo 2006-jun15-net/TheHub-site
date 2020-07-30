@@ -13,12 +13,21 @@
                             <h1>
                                 {{user.firstName}} {{user.lastName}} 
                             </h1>
-                            <h6>
-                                {{user.bio}}
-                            </h6>
-                            <p class="proile-rating">Admin <span *ngIf= "!user.admin">True</span></p>
+                            <br>
+                            <h4>Username: {{user.userName}}</h4>
+                            <br>
                     <div>
-                        <h2>About</h2>
+                        <h2>About</h2> 
+                        <hr>
+                        <p style="font-size: 15px;">Bio: </p>  
+                        <h4>
+                            {{user.bio}}
+                        </h4>
+                        <br>
+                        <p style="font-size: 15px;">Email: </p>  
+                        <h4>
+                            {{user.email}}
+                        </h4>   
                     </div>
                 </div>
             </div>
@@ -33,95 +42,9 @@
                     <a href="">Followers</a><br/>
                     <a href="">Following</a><br/>
                     
-                    <p>Participation</p>
+                    <p>Involvment</p>
                     <a href="">Reviews</a><br/>
                     <a href="">Comments</a><br/>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>{{user.id}}</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{user.firstName}}  {{user.lastName}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{user.firstName}}  {{user.lastName}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>{{user.email}}</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Profession</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Web Developer and Designer</p>
-                                    </div>
-                                </div>
-                    </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Experience</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Hourly Rate</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>10$/hr</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Total Projects</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>230</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>English Level</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Availability</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>6 months</p>
-                                    </div>
-                                </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Your Bio</label><br/>
-                                <p>Your detail description</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
