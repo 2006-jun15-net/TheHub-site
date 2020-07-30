@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Media } from '../models/media';
 import { MediaService } from '../media.service';
+import { Genre } from '../models/genre';
 
 @Component({
   selector: 'app-media',
@@ -12,7 +13,8 @@ import { MediaService } from '../media.service';
 })
 export class MediaComponent implements OnInit {
 
-  media: Media | null = null;
+  media: Media | undefined = undefined;
+  genre: Genre | undefined = undefined;
   
   constructor(
     private mediaService: MediaService,
@@ -32,7 +34,6 @@ export class MediaComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMediaByMediaId();
-    
   }
 
   getMediaByMediaId(): void {
@@ -42,8 +43,19 @@ export class MediaComponent implements OnInit {
     this.mediaService.getMediaByMediaId(id)
       .then(foundMedia => {
         this.media = foundMedia;
+        this.getMediaGenre();
         console.log(this.media);
       });
+    }
+  }
+
+  getMediaGenre(): void {
+    if (this.media)
+    { 
+      this.mediaService.getMediaGenre(this.media.genreId)
+      .then(foundGenre => {
+        this.genre = foundGenre;
+      })
     }
   }
 

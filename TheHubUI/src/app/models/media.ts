@@ -3,7 +3,7 @@ export interface Media {
     approved: boolean,
     composer: string,
     description: string,
-    genreId: number,
+    genreId: number | undefined,
     mediaId: number,
     mediaName: string,
     mediaTypeId: number,

@@ -9,6 +9,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Media } from './models/media';
+import { Genre } from './models/genre';
 @Injectable({
   providedIn: 'root'
 })
@@ -50,6 +51,16 @@ export class MediaService {
     return this.http.get<Media>(`${this.baseUrl}/api/media/${id}`, httpOptions).toPromise();
   }
   
+  async getMediaGenre(id: number | undefined) {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+
+    return this.http.get<Genre>(`${this.baseUrl}/api/media/genreid/${id}`, httpOptions).toPromise();
+
+  }
 
   ngOnInit() {
     

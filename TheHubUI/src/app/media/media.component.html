@@ -9,7 +9,9 @@
     <p>ID: {{media.mediaId}}</p>
     <h2>{{media.mediaName}}</h2>
     <h4>Composer: {{media.composer}}</h4>
-    <h5>Genre: {{media.genreId}}</h5>
+    <div *ngIf="genre">
+      <h5>Genre: {{genre.genreName}}</h5>
+    </div>
     <h5>Rating: {{media.rating}}/10</h5>
     <p>{{media.description}}</p>
 
