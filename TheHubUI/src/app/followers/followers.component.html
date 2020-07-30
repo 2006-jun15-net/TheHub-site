@@ -1,1 +1,5 @@
-<p>followers works!</p>
+<ul>
+    <li *ngFor="let follower of followers">
+        <span>{{follower.firstName}}</span>{{follower.lastName}}
+    </li>
+</ul>
