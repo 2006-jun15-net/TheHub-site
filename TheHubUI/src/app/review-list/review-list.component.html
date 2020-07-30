@@ -18,12 +18,23 @@
                     <h4>Likes: {{comment.likes}}</h4>    
                 </li>
             </ul>
+            <button #commentButton (click)="commentToggle(commentButton)">+</button>
+                <div *ngIf="commentFormShow">
+                    <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment(review.reviewId)">
+                        <div>
+                            <textarea formControlName="content" rows="5" cols="50" placeholder="Comment"></textarea>
+                        </div>
+                        <div>
+                            <input type="submit" [disabled]="!commentForm.valid" value="Post">
+                        </div>
+                    </form> 
+                </div>
         </div>
     </li>
 </ul>
 <button #reviewButton (click)="reviewToggle(reviewButton)">+</button>
 <div *ngIf="reviewFormShow">
-    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()">
         <div>
             <textarea formControlName="content" rows="5" cols="50" placeholder="Review"></textarea>
         </div>
