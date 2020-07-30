@@ -5,9 +5,10 @@
 .goButton{
   border: none;
   text-align: center;
-  font-size: 16px;
-  padding: 6px;
+  font-size: 15px;
+  padding: 8px 10px;
   border-radius: 6px;
+  background-color: #35a37c;
 }
 
 .nav-item{
@@ -16,8 +17,9 @@
     border-radius: 6px;
   }
 
-  .gobutton {
-    background-color: #35a37c;
+
+.collapse button:hover {
+    background-color: #348ea6;
     font-size: 15px;
     padding: 8px 10px;
   }
@@ -70,7 +72,7 @@
   /* Style the search box inside the navigation bar */
   .topnav input[type=text] {
     float: right;
-    padding: 6px;
+    padding: 12px ;
     background-color: white;
     color: #35a37c;;
     border: none;
