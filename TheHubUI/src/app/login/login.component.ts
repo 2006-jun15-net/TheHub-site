@@ -11,12 +11,12 @@ import User from '../models/user';
 })
 export class LoginComponent implements OnInit {
 
-  username: string = '';
-  password: string = '';
-  error: string = '';
+  username = '';
+  password = '';
+  error = '';
   user: User | null = null;
-  data: string ='';
-  isAuthenticated: boolean = false;
+  data = '';
+  isAuthenticated = false;
 
   constructor(public oktaAuth: OktaAuthService, private userService: UserService) {
     // Subscribe to authentication state changes
@@ -25,24 +25,13 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  onSubmit()
-  {
-    this.userService.login(this.username, this.password)
-    .then(user => {
-      this.error = '';
-      this.user = user;
-      console.log('sucess');
-      console.log(user);
 
-    })
-    .catch(error => this.error = error.toString());
-  }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void>{
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
   }
 
-  login() {
+  login(): void {
     this.oktaAuth.loginRedirect('/home');
   }
 

@@ -11,10 +11,10 @@ describe('LoginComponent', () => {
   let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async(() => {
-    const httpClient = jasmine.createSpyObj("HttpClient", ["get"]);
-    const userService = jasmine.createSpyObj("UserService", ["login"]);
+    const httpClient = jasmine.createSpyObj('HttpClient', ['get']);
+    const userService = jasmine.createSpyObj('UserService', ['login']);
     const oktaAuth = jasmine.createSpyObj('OktaAuthService', ['login']);
-    oktaAuth.$authenticationState = jasmine.createSpyObj('$authenticationState',['subscribe']);
+    oktaAuth.$authenticationState = jasmine.createSpyObj('$authenticationState', ['subscribe']);
     oktaAuth.$authenticationState.subscribe.and.returnValue(true);
 
     TestBed.configureTestingModule({

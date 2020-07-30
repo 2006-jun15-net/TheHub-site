@@ -11,9 +11,9 @@ describe('ProfileComponent', () => {
   let fixture: ComponentFixture<ProfileComponent>;
 
   beforeEach(async(() => {
-    const httpClient = jasmine.createSpyObj("HttpClient", ["get"]);
-    const userService = jasmine.createSpyObj("UserService", ["getUser"]);
-    const oktaAuth = jasmine.createSpyObj("OktaAuthService", ["getUser"]);
+    const httpClient = jasmine.createSpyObj('HttpClient', ['get']);
+    const userService = jasmine.createSpyObj('UserService', ['getUser']);
+    const oktaAuth = jasmine.createSpyObj('OktaAuthService', ['getUser']);
 
     TestBed.configureTestingModule({
       declarations: [ ProfileComponent ],
