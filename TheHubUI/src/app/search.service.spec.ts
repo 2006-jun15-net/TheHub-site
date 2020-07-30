@@ -7,7 +7,7 @@ describe('SearchService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    oktaAuthSpy = jasmine.createSpyObj('OktaAuthService', ['getUser']);
+    oktaAuthSpy = jasmine.createSpyObj('OktaAuthService', ['getAccessToken']);
     service = new SearchService(httpClientSpy as any, oktaAuthSpy as any);
   });
 

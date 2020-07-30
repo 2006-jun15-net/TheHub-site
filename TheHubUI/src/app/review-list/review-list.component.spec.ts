@@ -1,16 +1,39 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ReviewListComponent } from './review-list.component';
+import { ReviewService } from '../review.service';
+import { MediaService } from '../media.service';
+import { UserService } from '../user-service.service';
+import { OktaAuthService } from '@okta/okta-angular';
+import { ActivatedRoute } from '@angular/router';
 
 describe('ReviewListComponent', () => {
   let component: ReviewListComponent;
   let fixture: ComponentFixture<ReviewListComponent>;
 
   beforeEach(async(() => {
+    const reviewService = jasmine.createSpyObj('ReviewService', 
+      ['getReviewByMediaId', 'getComments', 'addComment', 'addReview', 'addReviewLike']);
+    const mediaService = jasmine.createSpyObj('MediaService', ['getMediaById']);
+    const userService = jasmine.createSpyObj('UserService', ['getUser']);
+    const oktaAuthService = jasmine.createSpyObj('OktaAuthService', ['getUser']);
+    const route = jasmine.createSpyObj('ActivatedRoute', ['snapshot']);
+    reviewService.getReviewByMediaId.and.returnValue(Promise.resolve([]));
+    reviewService.getComments.and.returnValue(Promise.resolve([]));
+    reviewService.addComment.and.returnValue(Promise.resolve());
+    reviewService.addReview.and.returnValue(Promise.resolve());
+    reviewService.addReviewLike.and.returnValue(Promise.resolve());
+    
     TestBed.configureTestingModule({
-      declarations: [ ReviewListComponent ]
-    })
-    .compileComponents();
+      declarations: [ ReviewListComponent ],
+      providers: [
+        {provide: ReviewService, useValue: reviewService},
+        {provide: MediaService, useValue: mediaService},
+        {provide: UserService, userValue: userService},
+        {provide: OktaAuthService, useValue: oktaAuthService},
+        {provide: ActivatedRoute, useValue: route},
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
