@@ -3,6 +3,14 @@ html {
     background-color: #0062cc;
 }
 
+.neon {
+	display: inline;
+	position: relative;
+	font: 60px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+	color: #348ea6; 
+}
+
   div {
       background-color: white;
       color: black;
@@ -11,6 +19,10 @@ html {
   #content {
     -webkit-box-shadow: 0px 30px 60px 0 rgba(0,0,0,0.3);
     box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+  .profile-img{
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.3);
+    padding-right: 10px;
   }
   
 
