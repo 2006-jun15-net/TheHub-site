@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
   error = '';
   UserId: number | undefined = 0;
   media: Media | null = null;
-  reviewId: number = 0;
-  mediaId: number = 0;
+  reviewId = 0;
+  mediaId = 0;
   comments: Comment[] | null = null;
 
   constructor( private searchService: SearchService,
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
       }
     }
 
-getMediaByMediaId(value: number){
+getMediaByMediaId(value: number): void{
       this.mediaId = value;
       this.mediaService.getMediaByMediaId(value)
        .then(medias => {
@@ -68,7 +68,7 @@ getMediaByMediaId(value: number){
       .catch(error => {
         this.error = error.toString();
         console.log(error);
-      })
+      });
     }
 
     // the feed
@@ -86,7 +86,7 @@ getMediaByMediaId(value: number){
       }
     }
 
-    getComments(value: number){
+    getComments(value: number): void{
       this.reviewId = value;
       this.reviewService.getComments(value)
       .then(comments => {
@@ -96,11 +96,10 @@ getMediaByMediaId(value: number){
       .catch(error => {
         this.error = error.toString();
         console.log(error);
-      })
+      });
     }
 
-  getMedia(value: string){
-    //id: number = parseInt(value, 10);
+  getMedia(value: string): void{
     this.searchService.getMediaTitles(value)
       .then(medias => {
         this.searchMedia = medias;
