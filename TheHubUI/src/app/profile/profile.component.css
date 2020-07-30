@@ -1,6 +1,25 @@
-body{
-    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+
+html {
+    background-color: #0062cc;
 }
+
+  div {
+      background-color: white;
+      color: black;
+      padding: 10px;
+  }
+  #content {
+    -webkit-box-shadow: 0px 30px 60px 0 rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+  }
+  
+
+  body {
+      margin-top: 0px;
+    font-family: "Poppins", sans-serif;
+    background-color: #348ea6;
+    padding: 10px 50px 10px 50px;
+  }
 .emp-profile{
     padding: 3%;
     margin-top: 3%;
@@ -93,3 +112,4 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
+
