@@ -14,35 +14,35 @@ import User from '../models/user';
 export class ProfileComponent implements OnInit {
 
   user: User | null = null;
-  UserEmail: string | undefined = "";
- 
+  UserEmail: string | undefined = '';
+
   constructor(
-    private userService: UserService, 
+    private userService: UserService,
     public oktaAuth: OktaAuthService
     ) {
-      
+
      }
 
-     async ngOnInit() {
+     async ngOnInit(): Promise<void> {
       const userClaims = await this.oktaAuth.getUser();
-      if(userClaims){
+      if (userClaims){
         this.UserEmail = userClaims.email;
       }
-      
+
       this.getUser();
     }
 
   getUser(): void{
-    if(this.UserEmail)
+    if (this.UserEmail)
     {
       this.userService.getUser(this.UserEmail)
       .then(user => {
         this.user = user;
-      })
+      });
     }
   }
 
- 
+
 
 
 }

@@ -24,75 +24,75 @@ export class ReviewListComponent implements OnInit {
   newComment: Comment | null = null;
   comments: Comment[] | null = null;
 
-  UserEmail: string | undefined = "";
+  UserEmail: string | undefined = '';
   UserId: number | undefined = undefined;
-  reviewId: number = 0;
-  reviewFormShow: boolean = false;
-  commentFormShow: boolean = false;
-  reviewButton: string = "Add Review";
-  error: string = '';
-  currentRate: number = 0;
+  reviewId = 0;
+  reviewFormShow = false;
+  commentFormShow = false;
+  reviewButton = 'Add Review';
+  error = '';
+  currentRate = 0;
 
-  isAuthenticated: boolean = false;
+  isAuthenticated = false;
 
   reviewForm = new FormGroup({
-    content: new FormControl('', 
+    content: new FormControl('',
     [Validators.required, Validators.minLength(5), Validators.maxLength(100)]),
      rating: new FormControl(0)
   });
   commentForm = new FormGroup({
-    content: new FormControl('', 
+    content: new FormControl('',
     [Validators.required, Validators.minLength(5), Validators.maxLength(100)])
   });
-  
-  
-  constructor(private reviewService: ReviewService, 
-    private mediaService: MediaService,
-    private userService: UserService,
-    private oktaAuth: OktaAuthService,
-    private route: ActivatedRoute) { }
 
-  async ngOnInit() {
+
+  constructor(private reviewService: ReviewService,
+              private mediaService: MediaService,
+              private userService: UserService,
+              private oktaAuth: OktaAuthService,
+              private route: ActivatedRoute) { }
+
+  async ngOnInit(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
-    if(userClaims){
+    if (userClaims){
       this.UserEmail = userClaims.email;
       console.log(this.UserEmail);
     }
-    
-    this.getMedia()
+
+    this.getMedia();
     this.reloadReviews();
     this.getUser();
   }
-  reviewToggle(button: HTMLElement)
+  reviewToggle(button: HTMLElement): void
   {
-    if(this.reviewFormShow)
+    if (this.reviewFormShow)
     {
       this.reviewFormShow = false;
-      button.innerHTML = "+";
+      button.innerHTML = '+';
     }
     else
     {
       this.reviewFormShow = true;
-      button.innerHTML = "-";
+      button.innerHTML = '-';
     }
   }
-  commentToggle(button: HTMLElement)
+  commentToggle(button: HTMLElement): void
   {
-    if(this.commentFormShow)
+    if (this.commentFormShow)
     {
       this.commentFormShow = false;
-      button.innerHTML = "+";
+      button.innerHTML = '+';
     }
     else
     {
       this.commentFormShow = true;
-      button.innerHTML = "-";
+      button.innerHTML = '-';
     }
   }
-  onSubmitComment(reviewId: number)
+  onSubmitComment(reviewId: number): void
   {
-    this.newComment = <Comment>this.commentForm.value;
-    if(this.UserId){
+    this.newComment = (this.commentForm.value as Comment);
+    if (this.UserId){
       this.newComment.reviewId = reviewId;
       this.newComment.userId = this.UserId;
       console.log(this.newComment);
@@ -104,15 +104,16 @@ export class ReviewListComponent implements OnInit {
       })
       .catch(error => {
         this.error = error.toString();
-        console.log(error)
+        console.log(error);
       });
       this.commentForm.reset();
     }
-  
+
   }
-  onSubmitReview(){
-    this.newReview = <Review>this.reviewForm.value;
-    if(this.selectedMedia && this.UserId){
+  onSubmitReview(): void
+  {
+    this.newReview = (this.reviewForm.value as Review);
+    if (this.selectedMedia && this.UserId){
       this.newReview.mediaId = this.selectedMedia.mediaId;
       this.newReview.userId = this.UserId;
       this.reviewService.addReview(this.newReview)
@@ -123,13 +124,13 @@ export class ReviewListComponent implements OnInit {
       })
       .catch(error => {
         this.error = error.toString();
-        console.log(error)
+        console.log(error);
       });
       this.reviewForm.reset();
     }
-    
+
   }
-  getComments(id: number)
+  getComments(id: number): void
   {
     this.reviewId = id;
     this.reviewService.getComments(id)
@@ -140,13 +141,13 @@ export class ReviewListComponent implements OnInit {
     .catch(error => {
       this.error = error.toString();
       console.log(error);
-    })
+    });
   }
-  getMedia()
+  getMedia(): void
   {
-    let idString = this.route.snapshot.paramMap.get('id');
+    const idString = this.route.snapshot.paramMap.get('id');
     if (idString){
-      let id = +idString;
+      const id = +idString;
       this.mediaService.getMediaById(id)
       .then(media => {
         this.selectedMedia = media;
@@ -155,14 +156,14 @@ export class ReviewListComponent implements OnInit {
       .catch(error => {
         this.error = error.toString();
         console.log(error);
-      })
+      });
     }
   }
-  reloadReviews()
+  reloadReviews(): void
   {
-    let idString = this.route.snapshot.paramMap.get('id');
+    const idString = this.route.snapshot.paramMap.get('id');
     if (idString){
-      let id = +idString;
+      const id = +idString;
       this.reviewService.getReviewByMediaId(id)
       .then(reviews => {
         this.reviews = reviews;
@@ -171,34 +172,34 @@ export class ReviewListComponent implements OnInit {
       .catch(error => {
         this.error = error.toString();
         console.log(error);
-      })
+      });
     }
   }
 
-  getUser()
+  getUser(): void
   {
-    //get user from login credentials here
-    if(this.UserEmail)
+    // get user from login credentials here
+    if (this.UserEmail)
     {
       this.userService.getUser(this.UserEmail)
       .then(user => {
         this.UserId = user.userId;
-      })
+      });
     }
-    
+
   }
 
-  
-  Like(reviewId: number)
+
+  Like(reviewId: number): void
   {
-      if(this.UserId)
+      if (this.UserId)
       {
-        this.reviewService.addReviewLike(reviewId,this.UserId)
+        this.reviewService.addReviewLike(reviewId, this.UserId)
         .then(() => this.reloadReviews())
-        .catch(error =>{
+        .catch(error => {
           this.error = error.toString();
           console.log(error);
-        })
+        });
       }
     }
   }

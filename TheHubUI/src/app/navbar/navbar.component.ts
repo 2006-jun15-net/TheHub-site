@@ -11,29 +11,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  isAuthenticated: boolean = false;
-  constructor(public oktaAuth: OktaAuthService, private mediaService: SearchService, public router:Router) { 
+  constructor(public oktaAuth: OktaAuthService, private mediaService: SearchService, public router: Router) {
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
     );
   }
-  async ngOnInit() {
+
+  isAuthenticated = false;
+  searchMedia: Media | null = null;
+
+  async ngOnInit(): Promise<void> {
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
   }
-  searchMedia: Media | null = null;
 
 
-  getMedia(value: string){
+  getMedia(value: string): void {
     this.mediaService.getMediaTitles(value)
       .then(medias => {
         this.searchMedia = medias;
         this.router.navigateByUrl(`/media/${this.searchMedia.mediaId}`);
-      })
+      });
   }
-  
-  logout() {
+
+  logout(): void {
     this.oktaAuth.logout('/');
   }
 }

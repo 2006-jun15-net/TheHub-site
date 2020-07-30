@@ -4,21 +4,6 @@
 
 <div *ngIf="searchMedia">
     {{searchMedia.mediaName}}
-    <!-- <br/>
-    Rating: {{searchMedia.rating}}
-    <br/>
-    Media Type's Id: {{searchMedia.mediaTypesId}}
-    <br/>
-    Media Id:{{searchMedia.mediaId}}
-    <br/>
-    Genre: {{searchMedia.genreId}}
-    <br/>
-    Composer: {{searchMedia.composer}}
-    <br/>
-    Description: {{searchMedia.description}}
-    <br/>
-    Media Url: {{searchMedia.mediaUrl}}
-    <br/> -->
 </div> 
 
 <div class="search" *ngIf="getItem == 1">
@@ -49,26 +34,38 @@
                 <button> Details and Reviews
                 </button>
             </a>
-            <!-- <br/>
-            Rating: {{media.rating}}
-            <br/>
-            Media Type's Id: {{media.mediaTypesId}}
-            <br/>
-            Media Id: {{media.mediaId}}
-            <br/>
-            Genre: {{media.genreId}}
-            <br/>
-            Composer: {{media.composer}}
-            <br/>
-            Description: {{media.description}}
-            <br/>
-            Media Url: {{media.mediaUrl}} -->
         </li>
     </ul>
 </div>
 
 
-<app-sidebar (filtered)="filter($event)">
+<app-sidebar (filtered)="filter($event)"></app-sidebar>
 
-
-</app-sidebar>
+<div>
+    <h2 class="search"> Your Feed</h2>
+    <ul style="padding-left: 220px;"  *ngFor="let review of reviews">
+        <!-- <button (click)="getMediaByMediaId(review.mediaId)">{{review.mediaId}}</button>
+        <h2>{{media.mediaName}}</h2> -->
+        <li class="list-group-item">
+            <h2>User: {{review.userId}}   <span>Media: {{review.mediaId}}</span></h2>
+            <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
+            <h4>{{review.reviewDate | date:'medium'}}</h4>
+        <h4>Likes: {{review.Likes}}</h4>
+        <br>
+        <span><button (click)="Like(review.reviewId)">Like</button></span>
+        <br>
+        <br>
+        <button (click)="getComments(review.reviewId)">comments</button>
+        <div *ngIf="comments && reviewId===review.reviewId">
+            <ul *ngFor="let comment of comments">
+                <li>
+                    <h3>User: {{comment.userId}}</h3>
+                    <h3>{{comment.content}}</h3>
+                    <h4>{{comment.date | date:'medium'}}</h4>
+                    <h4>Likes: {{comment.likes}}</h4>    
+                </li>
+            </ul>
+        </div>
+        </li>
+    </ul>
+</div>

@@ -15,10 +15,10 @@ export class SidebarComponent implements OnInit {
     new Option(2, 'Rating'),
     new Option(3, 'Reviews'),
     new Option(4, 'Composer')
-  ]
+  ];
   constructor() { }
 
-  Filter(id: number){
+  Filter(id: number): void{
     this.filtered.emit(id);
   }
   ngOnInit(): void {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import Review from './models/review';
 import Comment from './models/comment';
 import {environment} from '../environments/environment';
@@ -9,53 +9,63 @@ import {OktaAuthService} from '@okta/okta-angular';
 })
 export class ReviewService {
 
-  private baseUrl: string = "https://project2-thehub.azurewebsites.net";
+  private baseUrl = 'https://project2-thehub.azurewebsites.net';
 
   constructor(private httpClient: HttpClient, private oktaAuth: OktaAuthService) { }
 
-  async getReviewByMediaId(id: number)
+  async getReviewByMediaId(id: number): Promise<Review[]>
   {
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + accessToken })
+                                Authorization: 'Bearer ' + accessToken })
     };
-    return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/media/${id}`, httpOptions).toPromise(); 
+    return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/media/${id}`, httpOptions).toPromise();
   }
-  async addReview(review: Review)
+  async addReview(review: Review): Promise<Review>
   {
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + accessToken })
+                                Authorization: 'Bearer ' + accessToken })
     };
     return this.httpClient.post<Review>(`${this.baseUrl}/api/review/CreateReview`, review, httpOptions).toPromise();
   }
-  async addComment(comment: Comment)
+  async addComment(comment: Comment): Promise<Comment>
   {
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + accessToken })
+                                Authorization: 'Bearer ' + accessToken })
     };
     return this.httpClient.post<Comment>(`${this.baseUrl}/api/review/AddComment`, comment, httpOptions).toPromise();
   }
-  async getComments(id: number)
+  async getComments(id: number): Promise<Comment[]>
   {
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + accessToken })
+                                Authorization: 'Bearer ' + accessToken })
     };
-    return this.httpClient.get<Comment[]>(`${this.baseUrl}/api/review/${id}/comments`, httpOptions).toPromise(); 
+    return this.httpClient.get<Comment[]>(`${this.baseUrl}/api/review/${id}/comments`, httpOptions).toPromise();
   }
-  async addReviewLike(reviewId: number, userId: number)
+  async addReviewLike(reviewId: number, userId: number): Promise<any>
   {
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + accessToken })
+                                Authorization: 'Bearer ' + accessToken })
     };
     return this.httpClient.post(`${this.baseUrl}/api/review/like/${reviewId}/${userId}`, null, httpOptions).toPromise();
+  }
+
+  async getFeed(id: number): Promise<Review[]>
+  {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                Authorization: 'Bearer ' + accessToken })
+    };
+    return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/${id}/getfeed`, httpOptions).toPromise();
   }
 }

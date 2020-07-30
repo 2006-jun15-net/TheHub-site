@@ -31,8 +31,6 @@
 
             ],
             "scripts": [
-              "src/profscript1.js",
-              "src/profscript2.js"
             ]
           },
           "configurations": {
