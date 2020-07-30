@@ -18,8 +18,6 @@ import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MediaComponent } from './media/media.component';
 
-import { RegisterComponent } from './register/register.component';
-import { PrintErrorComponent } from './print-error/print-error.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ReviewListComponent } from './review-list/review-list.component';
 
@@ -41,8 +39,6 @@ const config =
     LoginComponent,
     NavbarComponent,
     MediaListComponent,
-    RegisterComponent,
-    PrintErrorComponent,
     HomeComponent,
     SidebarComponent,
     MediaComponent,

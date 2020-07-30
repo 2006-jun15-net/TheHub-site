@@ -4,9 +4,7 @@ import { Media } from '../models/media';
 import { SearchService } from '../search.service';
 
 import {ReviewService} from '../review.service';
-import { SidebarComponent } from '../sidebar/sidebar.component';	
 import Review from '../models/review';
-import { ActivatedRoute } from '@angular/router';
 import { OktaAuthService } from '@okta/okta-angular';
 import { UserService } from '../user-service.service';
 import { MediaService } from '../media.service';
@@ -33,7 +31,6 @@ export class HomeComponent implements OnInit {
 
   constructor( private searchService: SearchService,
     private reviewService: ReviewService,
-    private route: ActivatedRoute,
     private oktaAuth: OktaAuthService,
     private userService: UserService,
     private mediaService: MediaService
