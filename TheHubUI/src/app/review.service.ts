@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import Review from './models/review';
 import Comment from './models/comment';
 import {environment} from '../environments/environment';
@@ -57,5 +57,15 @@ export class ReviewService {
                                 'Authorization': 'Bearer ' + accessToken })
     };
     return this.httpClient.post(`${this.baseUrl}/api/review/like/${reviewId}/${userId}`, null, httpOptions).toPromise();
+  }
+
+  async getFeed(id: number)
+  {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.httpClient.get<Review[]>(`${this.baseUrl}/api/review/${id}/getfeed`, httpOptions).toPromise(); 
   }
 }
