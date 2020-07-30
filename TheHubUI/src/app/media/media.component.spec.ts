@@ -12,13 +12,13 @@ describe('MediaComponent', () => {
   let fixture: ComponentFixture<MediaComponent>;
 
   beforeEach(async(() => {
-    const httpClient = jasmine.createSpyObj("HttpClient", ["get"]);
-    const mediaService = jasmine.createSpyObj("MediaService", ["getMediaByMediaId"]);
-    const route = jasmine.createSpyObj("ActivatedRoute", ["snapshot"]);
-    const router = jasmine.createSpyObj("Router", [""])
-    router.events = jasmine.createSpyObj('event',['subscribe']);
+    const httpClient = jasmine.createSpyObj('HttpClient', ['get']);
+    const mediaService = jasmine.createSpyObj('MediaService', ['getMediaByMediaId']);
+    const route = jasmine.createSpyObj('ActivatedRoute', ['snapshot']);
+    const router = jasmine.createSpyObj('Router', ['']);
+    router.events = jasmine.createSpyObj('event', ['subscribe']);
     router.events.subscribe.and.returnValue(true);
-    route.snapshot.paramMap = jasmine.createSpyObj("paramMap", ["get"])
+    route.snapshot.paramMap = jasmine.createSpyObj('paramMap', ['get']);
 
 
 

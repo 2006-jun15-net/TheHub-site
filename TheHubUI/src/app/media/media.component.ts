@@ -15,31 +15,31 @@ export class MediaComponent implements OnInit {
 
   media: Media | undefined = undefined;
   genre: Genre | undefined = undefined;
-  
+
   constructor(
     private mediaService: MediaService,
     private route: ActivatedRoute,
     private location: Location,
     private router: Router
     ) {
-      this.router.events.subscribe(event =>{
+      this.router.events.subscribe(event => {
           if (event instanceof NavigationEnd)
           {
             this.getMediaByMediaId();
           }
-       })
+       });
      }
 
-  
+
 
   ngOnInit(): void {
     this.getMediaByMediaId();
   }
 
   getMediaByMediaId(): void {
-    let idString = this.route.snapshot.paramMap.get('id');
+    const idString = this.route.snapshot.paramMap.get('id');
     if (idString){
-    let id = +idString;
+    const id = +idString;
     this.mediaService.getMediaByMediaId(id)
       .then(foundMedia => {
         this.media = foundMedia;
@@ -51,11 +51,11 @@ export class MediaComponent implements OnInit {
 
   getMediaGenre(): void {
     if (this.media)
-    { 
+    {
       this.mediaService.getMediaGenre(this.media.genreId)
       .then(foundGenre => {
         this.genre = foundGenre;
-      })
+      });
     }
   }
 

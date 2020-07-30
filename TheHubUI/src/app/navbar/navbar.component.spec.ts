@@ -12,14 +12,14 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     const oktaAuth = jasmine.createSpyObj('OktaAuthService', ['getUser']);
-    oktaAuth.$authenticationState = jasmine.createSpyObj('$authenticationState',['subscribe']);
+    oktaAuth.$authenticationState = jasmine.createSpyObj('$authenticationState', ['subscribe']);
     const searchService = jasmine.createSpyObj('SearchService', ['getMediaTitles']);
     const router = jasmine.createSpyObj('Router', ['navigateByUrl']);
     oktaAuth.getUser.and.returnValue(Promise.resolve());
     oktaAuth.$authenticationState.subscribe.and.returnValue(true);
     searchService.getMediaTitles.and.returnValue(Promise.resolve());
     router.navigateByUrl.and.returnValue();
-    
+
     TestBed.configureTestingModule({
       declarations: [ NavbarComponent ],
       providers: [

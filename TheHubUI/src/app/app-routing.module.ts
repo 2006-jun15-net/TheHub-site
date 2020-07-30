@@ -10,13 +10,13 @@ import { OktaCallbackComponent } from '@okta/okta-angular';
 const CALLBACK_PATH = 'implicit/callback';
 
 const routes: Routes = [
-  {path:  "", pathMatch:  "full",redirectTo:  "login"},
-  {path: "login", component: LoginComponent },
-  { path: "media", component: MediaListComponent},
-  {path: "home", component: HomeComponent },
-  {path: "profile", component: ProfileComponent},
+  {path:  '', pathMatch:  'full', redirectTo:  'login'},
+  {path: 'login', component: LoginComponent },
+  { path: 'media', component: MediaListComponent},
+  {path: 'home', component: HomeComponent },
+  {path: 'profile', component: ProfileComponent},
   { path: 'media/:id', component: MediaComponent},
-  {path: "profile", component: ProfileComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: CALLBACK_PATH, component: OktaCallbackComponent}
 ];
 

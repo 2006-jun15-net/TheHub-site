@@ -15,12 +15,12 @@ export class MediaListComponent implements OnInit {
 
   constructor(private mediaService: MediaService) { }
 
-  getMediasByMediaType(id: number){
+  getMediasByMediaType(id: number): Promise<void>{
     return this.mediaService.getMediaByMediaType(id)
       .then(medias => {
         this.mediaList = medias;
         console.log(this.mediaList);
-      })
+      });
   }
 
   ngOnInit(): void {

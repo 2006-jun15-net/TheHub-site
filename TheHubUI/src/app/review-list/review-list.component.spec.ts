@@ -13,13 +13,13 @@ describe('ReviewListComponent', () => {
   let fixture: ComponentFixture<ReviewListComponent>;
 
   beforeEach(async(() => {
-    const reviewService = jasmine.createSpyObj('ReviewService', 
+    const reviewService = jasmine.createSpyObj('ReviewService',
       ['getReviewByMediaId', 'getComments', 'addComment', 'addReview', 'addReviewLike']);
     const mediaService = jasmine.createSpyObj('MediaService', ['getMediaById']);
     const userService = jasmine.createSpyObj('UserService', ['getUser']);
     const oktaAuthService = jasmine.createSpyObj('OktaAuthService', ['getUser']);
     const route = jasmine.createSpyObj('ActivatedRoute', ['snapshot']);
-    const httpClient = jasmine.createSpyObj('HttpClient',['get']);
+    const httpClient = jasmine.createSpyObj('HttpClient', ['get']);
     reviewService.getReviewByMediaId.and.returnValue(Promise.resolve([]));
     reviewService.getComments.and.returnValue(Promise.resolve([]));
     reviewService.addComment.and.returnValue(Promise.resolve());
@@ -29,7 +29,7 @@ describe('ReviewListComponent', () => {
     userService.getUser.and.returnValue(Promise.resolve());
     oktaAuthService.getUser.and.returnValue(Promise.resolve());
     route.snapshot.and.returnValue();
-    
+
     TestBed.configureTestingModule({
       declarations: [ ReviewListComponent ],
       providers: [
