@@ -6,6 +6,7 @@ import { MediaService } from '../media.service';
 import { UserService } from '../user-service.service';
 import { OktaAuthService } from '@okta/okta-angular';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 describe('ReviewListComponent', () => {
   let component: ReviewListComponent;
@@ -18,11 +19,16 @@ describe('ReviewListComponent', () => {
     const userService = jasmine.createSpyObj('UserService', ['getUser']);
     const oktaAuthService = jasmine.createSpyObj('OktaAuthService', ['getUser']);
     const route = jasmine.createSpyObj('ActivatedRoute', ['snapshot']);
+    const httpClient = jasmine.createSpyObj('HttpClient',['get']);
     reviewService.getReviewByMediaId.and.returnValue(Promise.resolve([]));
     reviewService.getComments.and.returnValue(Promise.resolve([]));
     reviewService.addComment.and.returnValue(Promise.resolve());
     reviewService.addReview.and.returnValue(Promise.resolve());
     reviewService.addReviewLike.and.returnValue(Promise.resolve());
+    mediaService.getMediaById.and.returnValue(Promise.resolve([]));
+    userService.getUser.and.returnValue(Promise.resolve());
+    oktaAuthService.getUser.and.returnValue(Promise.resolve());
+    route.snapshot.and.returnValue();
     
     TestBed.configureTestingModule({
       declarations: [ ReviewListComponent ],
@@ -32,6 +38,7 @@ describe('ReviewListComponent', () => {
         {provide: UserService, userValue: userService},
         {provide: OktaAuthService, useValue: oktaAuthService},
         {provide: ActivatedRoute, useValue: route},
+        {provide: HttpClient, useValue: httpClient}
       ],
     }).compileComponents();
   }));
