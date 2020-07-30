@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Media } from '../models/media';
 import { SearchService } from '../search.service';
-
+import Comment from '../models/comment';
 import {ReviewService} from '../review.service';
 import Review from '../models/review';
 import { OktaAuthService } from '@okta/okta-angular';
@@ -27,7 +27,9 @@ export class HomeComponent implements OnInit {
   error: string = '';
   UserId: number | undefined = 0;
   media: Media | null = null;
-
+  reviewId: number = 0;
+  mediaId: number = 0;
+  comments: Comment[] | null = null;
 
   constructor( private searchService: SearchService,
     private reviewService: ReviewService,
@@ -57,10 +59,15 @@ export class HomeComponent implements OnInit {
     }
 
     getMediaByMediaId(value: number){
+      this.mediaId = value;
       this.mediaService.getMediaByMediaId(value)
-      .then(medias => {
+       .then(medias => {
         this.media = medias;
-        // console.log(this.media);
+        console.log(medias);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error);
       })
     }
   
@@ -68,7 +75,6 @@ export class HomeComponent implements OnInit {
     feed(){
       if (this.UserId){
         this.reviewService.getFeed(this.UserId)
-
         .then(reviews => {
           this.reviews = reviews;
           console.log(reviews);
@@ -78,6 +84,19 @@ export class HomeComponent implements OnInit {
           console.log(error);
         })
       }
+    }
+
+    getComments(value: number){
+      this.reviewId = value;
+      this.reviewService.getComments(value)
+      .then(comments => {
+        this.comments = comments;
+        console.log(comments);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error);
+      })
     }
 
   getMedia(value: string){
