@@ -4,9 +4,9 @@
 </div>
 <ul *ngFor="let review of reviews" class="list-group">
     <li class="list-group-item">
-        <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
-        <h4>{{review.reviewDate | date:'medium'}}</h4>
-        <h4>Likes: {{review.likes}}</h4>
+        <h2 style="color: #348ea6;">{{review.content}} <span>{{review.rating}}/10</span></h2>
+        <h4 style="color: gray;">{{review.reviewDate | date:'medium'}}</h4>
+        <h4 style="color: gray;">Likes: {{review.likes}}</h4>
         <div class="button-wrapper" style="display: flex;" >
             <button class="go-button" (click)="Like(review.reviewId)">Like</button>
         
@@ -15,9 +15,8 @@
         <div *ngIf="comments && reviewId===review.reviewId">
             <ul *ngFor="let comment of comments" class="list-group">
                 <li>
-                    <h3>{{comment.content}}</h3>
-                    <h4>{{comment.date | date:'medium'}}</h4>
-                    <h4>Likes: {{comment.likes}}</h4>    
+                    <h3 style="color: #348ea6;">{{comment.content}}</h3>
+                    <h4 style="color: gray;">{{comment.date | date:'medium'}}</h4>
                 </li>
             </ul>
             <button #commentButton (click)="commentToggle(commentButton)">+</button>
