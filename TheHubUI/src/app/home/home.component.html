@@ -30,7 +30,7 @@
         
         <div>
             <ul class="search" *ngFor="let media of mediaList">
-                <li>
+                <li id="card">
                     <h2 style="color: white; padding-bottom: 10px;">{{media.mediaName}}</h2>
                     <a style="color: white;" routerLink="/media/{{media.mediaId}}">
                         <button> Details and Reviews
