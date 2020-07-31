@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Comment from '../models/comment';
 
 import { Media } from '../models/media';
 import { SearchService } from '../search.service';
@@ -27,6 +28,9 @@ export class HomeComponent implements OnInit {
   error = '';
   UserId: number | undefined = 0;
   media: Media | null = null;
+  comments: Comment[] | null = null;
+
+  reviewId: number | undefined = 0;
 
 
   constructor( private searchService: SearchService,
@@ -79,6 +83,33 @@ export class HomeComponent implements OnInit {
         });
       }
     }
+
+    getComments(value: number): void{
+      this.reviewId = value;
+      this.reviewService.getComments(value)
+      .then(comments => {
+        this.comments = comments;
+        console.log(comments);
+      })
+      .catch(error => {
+        this.error = error.toString();
+        console.log(error);
+      });
+    }
+
+    Like(reviewId: number): void
+    {
+      if (this.UserId)
+      {
+        this.reviewService.addReviewLike(reviewId, this.UserId)
+        .then(() => this.feed())
+        .catch(error => {
+          this.error = error.toString();
+          console.log(error);
+        });
+      }
+    }
+
 
   getMedia(value: string): void{
     // id: number = parseInt(value, 10);
@@ -138,5 +169,7 @@ export class HomeComponent implements OnInit {
         console.log(this.mediaList);
       });
   }
+
+
 
 }

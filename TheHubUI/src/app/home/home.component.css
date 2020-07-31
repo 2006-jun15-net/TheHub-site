@@ -108,3 +108,13 @@ button{
     font-size: 15px;
     padding: 8px 10px;
   }
+
+.header-container {
+  display: flex;
+}
+
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  transform: translateX(200px) translateY(-200px);
+}
