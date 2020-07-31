@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Media } from '../models/media';
 import { SearchService } from '../search.service';
-import Comment from '../models/comment';
+
 import {ReviewService} from '../review.service';
 import Review from '../models/review';
 import { OktaAuthService } from '@okta/okta-angular';
@@ -27,9 +27,7 @@ export class HomeComponent implements OnInit {
   error = '';
   UserId: number | undefined = 0;
   media: Media | null = null;
-  reviewId = 0;
-  mediaId = 0;
-  comments: Comment[] | null = null;
+
 
   constructor( private searchService: SearchService,
                private reviewService: ReviewService,
@@ -58,16 +56,11 @@ export class HomeComponent implements OnInit {
       }
     }
 
-getMediaByMediaId(value: number): void{
-      this.mediaId = value;
+    getMediaByMediaId(value: number): void{
       this.mediaService.getMediaByMediaId(value)
-       .then(medias => {
+      .then(medias => {
         this.media = medias;
-        console.log(medias);
-      })
-      .catch(error => {
-        this.error = error.toString();
-        console.log(error);
+        // console.log(this.media);
       });
     }
 
@@ -75,6 +68,7 @@ getMediaByMediaId(value: number): void{
     feed(): void{
       if (this.UserId){
         this.reviewService.getFeed(this.UserId)
+
         .then(reviews => {
           this.reviews = reviews;
           console.log(reviews);
@@ -86,35 +80,8 @@ getMediaByMediaId(value: number): void{
       }
     }
 
-    getComments(value: number): void{
-      this.reviewId = value;
-      this.reviewService.getComments(value)
-      .then(comments => {
-        this.comments = comments;
-        console.log(comments);
-      })
-      .catch(error => {
-        this.error = error.toString();
-        console.log(error);
-      });
-    }
-
-    Like(reviewId: number): void
-    {
-      if (this.UserId)
-      {
-        this.reviewService.addReviewLike(reviewId, this.UserId)
-        .then(() => this.feed())
-        .catch(error => {
-          this.error = error.toString();
-          console.log(error);
-        });
-      }
-    }
-
-
-
   getMedia(value: string): void{
+    // id: number = parseInt(value, 10);
     this.searchService.getMediaTitles(value)
       .then(medias => {
         this.searchMedia = medias;

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import Review from './models/review';
 import Comment from './models/comment';
-import {environment} from '../environments/environment';
 import {OktaAuthService} from '@okta/okta-angular';
 @Injectable({
   providedIn: 'root'
