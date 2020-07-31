@@ -1,3 +1,10 @@
 ul{
     list-style: none;
 }
+
+.neon {
+	font: 60px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+	color: #348ea6; 
+	margin-bottom: 10px;
+}

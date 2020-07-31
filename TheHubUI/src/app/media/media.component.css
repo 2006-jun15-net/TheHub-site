@@ -1,6 +1,10 @@
-.jumbotron-container {
-    align-items: center;
-    align-content: center;
-    justify-content: center;
-    justify-items: center;
+.neon {
+	font: 70px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+	color: #348ea6; 
+	margin-bottom: 10px;
+}
+
+img {
+	transform: translateX(500px);
 }

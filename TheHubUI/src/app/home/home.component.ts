@@ -81,37 +81,6 @@ export class HomeComponent implements OnInit {
       }
     }
 
-<<<<<<< HEAD
-=======
-    getComments(value: number): void{
-      this.reviewId = value;
-      this.reviewService.getComments(value)
-      .then(comments => {
-        this.comments = comments;
-        console.log(comments);
-      })
-      .catch(error => {
-        this.error = error.toString();
-        console.log(error);
-      });
-    }
-
-    Like(reviewId: number): void
-    {
-      if (this.UserId)
-      {
-        this.reviewService.addReviewLike(reviewId, this.UserId)
-        .then(() => this.feed())
-        .catch(error => {
-          this.error = error.toString();
-          console.log(error);
-        });
-      }
-    }
-
-
-
->>>>>>> master
   getMedia(value: string): void{
     // id: number = parseInt(value, 10);
     this.searchService.getMediaTitles(value)

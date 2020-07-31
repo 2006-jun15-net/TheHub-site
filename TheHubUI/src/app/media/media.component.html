@@ -1,9 +1,13 @@
 <div *ngIf="media">
 
-    <div class="jumbotron">
-      <h1 class="display-4">{{media.mediaName}}</h1>
+    <div class="jumbotron" style="margin-bottom: 0;">
+      <div class="header-wrapper">
+        <h1 class="neon" >
+          {{media.mediaName}} 
+        </h1>
+      </div>
       
-      <img src="{{media.mediaUrl}}" alt="media-image">
+      <img src="{{media.mediaUrl}}" style="height: 250px; width: 250px;" alt="media-image">
 
       <hr class="my-4">
       <h2>Composer: {{media.composer}}</h2>
@@ -21,5 +25,3 @@
     <app-review-list></app-review-list>
 
 </div>
-
-<button (click)="goBack()">go back</button>

@@ -59,8 +59,5 @@ export class MediaComponent implements OnInit {
     }
   }
 
-  goBack(): void {
-    this.location.back();
-  }
 
 }
