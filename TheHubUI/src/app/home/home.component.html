@@ -2,70 +2,70 @@
 <input #myInput placeholder="Search" >
 <button (click)="getMedia(myInput.value)">media</button> -->
 
-<div *ngIf="searchMedia">
-    {{searchMedia.mediaName}}
-</div> 
+<body style="background-color: #348ea6;">
+    <div *ngIf="searchMedia">
+        {{searchMedia.mediaName}}
+    </div>
 
-<div class="search" *ngIf="getItem == 1">
-    <input #myInput placeholder="Search genre" >
-    <button (click)="getByGenre(myInput.value)">Submit</button>
-</div>
+    <div class="search" *ngIf="getItem == 1">
+        <input #myInput placeholder="Search genre">
+        <button (click)="getByGenre(myInput.value)">Submit</button>
+    </div>
 
-<div class="search" *ngIf="getItem == 2">
-    <input #myInput placeholder="Search rating" >
-    <button (click)="getByRating(myInput.value)">Submit</button>
-</div>
+    <div class="search" *ngIf="getItem == 2">
+        <input #myInput placeholder="Search rating">
+        <button (click)="getByRating(myInput.value)">Submit</button>
+    </div>
 
-<div class="search" *ngIf="getItem == 3">
-    <input #myInput placeholder="Search by number of Reviews" >
-    <button (click)="getByReview(myInput.value)">Submit</button>
-</div>
+    <div class="search" *ngIf="getItem == 3">
+        <input #myInput placeholder="Search by number of Reviews">
+        <button (click)="getByReview(myInput.value)">Submit</button>
+    </div>
 
-<div class="search" *ngIf="getItem == 4">
-    <input #myInput placeholder="Search Composer">
-    <button (click)="getByComposer(myInput.value)">Submit</button>
-</div>
-
-<div>
-    <ul class="search" *ngFor="let media of mediaList">
-        <li>
-            <h2>{{media.mediaName}}</h2>
-            <a routerLink="/media/{{media.mediaId}}" >
-                <button> Details and Reviews
-                </button>
-            </a>
-        </li>
-    </ul>
-</div>
-
-
-<app-sidebar (filtered)="filter($event)"></app-sidebar>
-
-<div>
-    <h2 class="search"> Your Feed</h2>
-    <ul style="padding-left: 220px;"  *ngFor="let review of reviews">
-        <!-- <button (click)="getMediaByMediaId(review.mediaId)">{{review.mediaId}}</button>
-        <h2>{{media.mediaName}}</h2> -->
-        <li class="list-group-item">
-            <h2>User: {{review.userId}}   <span>Media: {{review.mediaId}}</span></h2>
-            <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
-            <h4>{{review.reviewDate | date:'medium'}}</h4>
-        <h4>Likes: {{review.likes}}</h4>
-        <br>
-        <span><button (click)="Like(review.reviewId)">Like</button></span>
-        <br>
-        <br>
-        <button (click)="getComments(review.reviewId)">comments</button>
-        <div *ngIf="comments && reviewId===review.reviewId">
-            <ul *ngFor="let comment of comments">
+    <div class="search" *ngIf="getItem == 4">
+        <input #myInput placeholder="Search Composer">
+        <button (click)="getByComposer(myInput.value)">Submit</button>
+    </div>
+    <div style="padding: 0px;">
+        
+        <div>
+            <ul class="search" *ngFor="let media of mediaList">
                 <li>
-                    <h3>User: {{comment.userId}}</h3>
-                    <h3>{{comment.content}}</h3>
-                    <h4>{{comment.date | date:'medium'}}</h4>
-                    <h4>Likes: {{comment.likes}}</h4>    
+                    <h2 style="color: white; padding-bottom: 10px;">{{media.mediaName}}</h2>
+                    <a style="color: white;" routerLink="/media/{{media.mediaId}}">
+                        <button> Details and Reviews
+                        </button>
+                    </a>
+                    <hr>
                 </li>
             </ul>
         </div>
-        </li>
-    </ul>
-</div>
+        <div class="content" style="padding-top: 0px; margin-top: 0px; background-color: white;">
+            <app-sidebar class="sidebar" (filtered)="filter($event)"></app-sidebar>
+            <h2 class="neon"> Home</h2>
+            <ul style="padding:50px 0px 0px 520px;" *ngFor="let review of reviews">
+                <li class="list-group-item">
+                    <h2 style="color: #348ea6;">User: {{review.userId}} <span>Media: {{review.mediaId}}</span></h2>
+                    <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
+                    <h4 style="color: gray;">{{review.reviewDate | date:'medium'}}</h4>
+                    <h4 style="color: gray;">Likes: {{review.likes}}</h4>
+                    <br>
+                    <span><button class="goButton"(click)="Like(review.reviewId)">Like</button> <button class="goButton"(click)="getComments(review.reviewId)">comments</button></span>
+                    <hr>
+                    <div *ngIf="comments && reviewId===review.reviewId">
+                        <ul *ngFor="let comment of comments">
+                            <li>
+                                <h3 style="color: #348ea6;">User: {{comment.userId}}</h3>
+                                <h3>{{comment.content}}</h3>
+                                <span>
+                                <h4 style="color:gray">{{comment.date | date:'medium'}}</h4></span>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+
+    </div>
+</body>
