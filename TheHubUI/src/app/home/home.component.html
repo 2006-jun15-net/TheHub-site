@@ -42,7 +42,7 @@
         </div>
         <div class="content" style="padding-top: 0px; margin-top: 0px; background-color: white;">
             <app-sidebar class="sidebar" (filtered)="filter($event)"></app-sidebar>
-            <h2 class="neon"> Explore</h2>
+            <h2 class="neon"> Home</h2>
             <ul style="padding:50px 0px 0px 520px;" *ngFor="let review of reviews">
                 <li class="list-group-item">
                     <h2 style="color: #348ea6;">User: {{review.userId}} <span>Media: {{review.mediaId}}</span></h2>
