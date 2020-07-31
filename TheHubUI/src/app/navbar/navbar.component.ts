@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  input: string ="";
+  input = '';
   constructor(public oktaAuth: OktaAuthService, private mediaService: SearchService, public router: Router) {
     this.oktaAuth.$authenticationState.subscribe(
       (isAuthenticated: boolean) => this.isAuthenticated = isAuthenticated
