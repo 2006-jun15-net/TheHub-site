@@ -34,6 +34,6 @@ export class UserService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
                                 'Authorization': 'Bearer ' + accessToken })
     };
-    return this.http.get<User[]>(`${this.baseUrl}/api/User/followers/${userId}`, httpOptions).toPromise();
+    return this.httpClient.get<User[]>(`${this.baseUrl}/api/User/followers/${userId}`, httpOptions).toPromise();
   }
 }

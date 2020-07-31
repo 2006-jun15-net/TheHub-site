@@ -15,7 +15,7 @@ export class FollowersComponent implements OnInit {
 
   user: User | null = null;
   UserEmail: string | undefined = '';
-  followers: user[];
+  followers: User[]| null = null;
   constructor(
     private userService: UserService,
     public oktaAuth: OktaAuthService
