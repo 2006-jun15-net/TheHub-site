@@ -23,8 +23,17 @@ export class UserService {
         Authorization: 'Bearer ' + accessToken
       }),
       params: new HttpParams().set('email', userEmail)
-
     };
     return this.httpClient.get<User>(`${this.baseUrl}/api/User`, httpOptions).toPromise();
+  }
+
+  async getFollowers(userId: number)
+  {
+    const accessToken = await this.oktaAuth.getAccessToken();
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                                'Authorization': 'Bearer ' + accessToken })
+    };
+    return this.http.get<User[]>(`${this.baseUrl}/api/User/followers/${userId}`, httpOptions).toPromise();
   }
 }

@@ -20,6 +20,7 @@ import { MediaComponent } from './media/media.component';
 
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ReviewListComponent } from './review-list/review-list.component';
+import { FollowersComponent } from './followers/followers.component';
 
 
 const config =
@@ -43,7 +44,8 @@ const config =
     SidebarComponent,
     MediaComponent,
     ReviewListComponent,
-    ProfileComponent
+    ProfileComponent,
+    FollowersComponent
   ],
   imports: [
     BrowserModule,
