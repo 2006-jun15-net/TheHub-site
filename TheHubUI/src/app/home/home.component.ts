@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
         .then(user => {
           this.UserId = user.userId;
           this.feed();
-          
+
         });
       }
     }
@@ -70,7 +70,6 @@ export class HomeComponent implements OnInit {
         this.reviewService.getFeed(this.UserId)
 
         .then(reviews => {
-          debugger;
           this.reviews = reviews;
           console.log(reviews);
         })

@@ -21,13 +21,11 @@ ul{
 
 .sidenav {
     width: 200px;
-    position: fixed;
-    z-index: 1;
+    height: 300px;
+    position: relative;
     top: 12%;
-    left: 10px;
-    background: #eee;
-    overflow-x: hidden;
-    padding-bottom: 50%;
-    border: 3px solid #34a37b;
+    background: #328ca4;
+    color: white;
+    border: 0px solid #34a37b;
     font-size: medium;
   }

@@ -27,12 +27,12 @@ export class UserService {
     return this.httpClient.get<User>(`${this.baseUrl}/api/User`, httpOptions).toPromise();
   }
 
-  async getFollowers(userId: number)
+  async getFollowers(userId: number): Promise<User[]>
   {
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                                'Authorization': 'Bearer ' + accessToken })
+                                Authorization: 'Bearer ' + accessToken })
     };
     return this.httpClient.get<User[]>(`${this.baseUrl}/api/User/followers/${userId}`, httpOptions).toPromise();
   }

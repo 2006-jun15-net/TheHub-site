@@ -62,7 +62,6 @@ export class ReviewService {
 
   async getFeed(id: number): Promise<Review[]>
   {
-    debugger;
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',

@@ -51,7 +51,7 @@ export class ReviewListComponent implements OnInit {
               private userService: UserService,
               private oktaAuth: OktaAuthService,
               private route: ActivatedRoute,
-              private router: Router ) { 
+              private router: Router ) {
                 this.router.events.subscribe(event => {
                   if (event instanceof NavigationEnd)
                   {

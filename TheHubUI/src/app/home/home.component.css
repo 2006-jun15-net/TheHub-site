@@ -4,8 +4,19 @@
 
 .search{
   /* padding-left: 500px; */
-  padding-top: 50px;
+  padding: 30px 0px 30px 0px;
   text-align: center;
+}
+.neon {
+	display: inline;
+	position: relative;
+	font: 80px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+    color: #348ea6; 
+    margin-left: 85px;
+    padding-top: 0px;
+    padding-bottom: 200px;
+    padding-left: 200px;
 }
 
 input{
@@ -67,5 +78,33 @@ button{
       font-size: 60px;
       margin-left: 2rem;
   }
-
+#card{
   
+  -webkit-box-shadow: 0px 30px 60px 0 rgba(0,0,0,0.3);
+  box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
+}
+  .content{
+    padding: 0px;
+    position: absolute;
+    margin-left: 100px;
+  }
+
+  .sidebar{
+    position: relative;
+    padding-left: 0px;
+    margin-left: -10px;
+  }
+  .goButton{
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background-color: #348ea6;
+  }
+
+  button:hover {
+    background-color: #35a37c;
+    font-size: 15px;
+    padding: 8px 10px;
+  }
