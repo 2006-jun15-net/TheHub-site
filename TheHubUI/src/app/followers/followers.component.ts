@@ -16,7 +16,7 @@ export class FollowersComponent implements OnInit {
   user: User | null = null;
   UserEmail: string | undefined = '';
   followers: User[]| null = null;
-  id: number = 0;
+  id = 0;
   constructor(
     private userService: UserService,
     public oktaAuth: OktaAuthService
@@ -29,7 +29,7 @@ export class FollowersComponent implements OnInit {
     }
 
     this.getUser();
-    
+
   }
 
   getUser(): void{
@@ -46,10 +46,10 @@ export class FollowersComponent implements OnInit {
 
   getFollowers(): void{
 
-    if(this.id){
+    if (this.id){
       this.userService.getFollowers(this.id)
-      .then(followers =>{
-        this.followers = followers; 
+      .then(followers => {
+        this.followers = followers;
       });
     }
   }
