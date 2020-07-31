@@ -77,12 +77,12 @@ export class ReviewListComponent implements OnInit {
     if (this.reviewFormShow)
     {
       this.reviewFormShow = false;
-      button.innerHTML = '+';
+      // button.innerHTML = '+';
     }
     else
     {
       this.reviewFormShow = true;
-      button.innerHTML = '-';
+      // button.innerHTML = '-';
     }
   }
   commentToggle(button: HTMLElement): void
