@@ -16,6 +16,7 @@ export class FollowersComponent implements OnInit {
   user: User | null = null;
   UserEmail: string | undefined = '';
   followers: User[]| null = null;
+  id: number = 0;
   constructor(
     private userService: UserService,
     public oktaAuth: OktaAuthService
@@ -28,7 +29,7 @@ export class FollowersComponent implements OnInit {
     }
 
     this.getUser();
-    this.getFollowers();
+    
   }
 
   getUser(): void{
@@ -37,13 +38,15 @@ export class FollowersComponent implements OnInit {
       this.userService.getUser(this.UserEmail)
       .then(user => {
         this.user = user;
+        this.id = user.userId;
+        this.getFollowers();
       });
     }
   }
 
   getFollowers(): void{
-    if(this.user){
-      this.userService.getFollowers(this.user.userId)
+    if(this.id){
+      this.userService.getFollowers(this.id)
       .then(followers =>{
         this.followers = followers; 
       });
