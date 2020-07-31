@@ -42,12 +42,12 @@ export class FollowersComponent implements OnInit {
   }
 
   getFollowers(): void{
-    if(this.user){
-      this.userService.getFollowers(this.user.userId)
-      .then(followers =>{
-        this.followers = followers; 
-      });
-    }
+    // if(this.user){
+    //   this.userService.getFollowers(this.user.userId)
+    //   .then(followers =>{
+    //     this.followers = followers; 
+    //   });
+    // }
   }
 
 }
