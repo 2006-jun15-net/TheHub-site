@@ -52,7 +52,7 @@ export class FollowersComponent implements OnInit {
         this.followers = followers;
       });
     }
-  
+
   }
 
 }
