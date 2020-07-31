@@ -1,23 +1,34 @@
-<div class="button-wrapper">
-    <button class="btn btn-dark" (click)="getMediasByMediaType(1)">Video Games</button>
-    <button class="btn btn-dark" (click)="getMediasByMediaType(2)">Movies</button>
-    <button class="btn btn-dark" (click)="getMediasByMediaType(3)">Albums</button>
-    <button class="btn btn-dark" (click)="getMediasByMediaType(4)">Books</button>
-    <button class="btn btn-dark" (click)="getMediasByMediaType(5)">TV Shows</button>
-</div>
-
-<div class="media-list-wrapper">
-
-<div *ngFor="let media of mediaList" class="">
+<html >
     
-    <div class="card" style="width: 18rem;">
-        <img src="{{media.mediaUrl}}" class="card-img-top" alt="media-image">
-        <div class="card-body">
-          <h5 class="card-title">{{media.mediaName}}</h5>
-          <p class="card-text overflow-hidden" style="height: 100px;">{{media.description}}</p>
-          <a routerLink="/media/{{media.mediaId}}" class="btn btn-primary">Details and Reviews</a>
-        </div>
-    </div>
+<body style="background-color: white;" style="padding-top: 60px;">
+    <h1 class="neon">Explore</h1>
+    <div id="content">
 
-</div>
-</div>
+        <div class="button-wrapper">
+            <button class="btn " (click)="getMediasByMediaType(1)">Video Games</button>
+            <button class="btn " (click)="getMediasByMediaType(2)">Movies</button>
+            <button class="btn " (click)="getMediasByMediaType(3)">Albums</button>
+            <button class="btn " (click)="getMediasByMediaType(4)">Books</button>
+            <button class="btn " (click)="getMediasByMediaType(5)">TV Shows</button>
+        </div>
+
+        <div class="media-list-wrapper">
+
+            <div *ngFor="let media of mediaList" id="mediacards">
+
+                <div class="card" style="width: 18rem;">
+                    <img src="{{media.mediaUrl}}" class="card-img-top" alt="media-image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{media.mediaName}}</h5>
+                        <p class="card-text overflow-hidden" style="height: 150px;">{{media.description}}</p>
+                        <a routerLink="/media/{{media.mediaId}}" class="btn btn-primary">Details and Reviews</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
