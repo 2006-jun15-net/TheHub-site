@@ -41,29 +41,33 @@
             </ul>
         </div>
         <div class="content" style="padding-top: 0px; margin-top: 0px; background-color: white;">
-            <app-sidebar class="sidebar" (filtered)="filter($event)"></app-sidebar>
-            <h2 class="neon"> Home</h2>
-            <ul style="padding:50px 0px 0px 520px;" *ngFor="let review of reviews">
-                <li class="list-group-item">
-                    <h2 style="color: #348ea6;">User: {{review.userId}} <span>Media: {{review.mediaId}}</span></h2>
-                    <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
-                    <h4 style="color: gray;">{{review.reviewDate | date:'medium'}}</h4>
-                    <h4 style="color: gray;">Likes: {{review.likes}}</h4>
-                    <br>
-                    <span><button class="goButton"(click)="Like(review.reviewId)">Like</button> <button class="goButton"(click)="getComments(review.reviewId)">comments</button></span>
-                    <hr>
-                    <div *ngIf="comments && reviewId===review.reviewId">
-                        <ul *ngFor="let comment of comments">
-                            <li>
-                                <h3 style="color: #348ea6;">User: {{comment.userId}}</h3>
-                                <h3>{{comment.content}}</h3>
-                                <span>
-                                <h4 style="color:gray">{{comment.date | date:'medium'}}</h4></span>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
+            <div class="header-container">
+                <app-sidebar class="sidebar" (filtered)="filter($event)"></app-sidebar>
+                <h2 class="neon"> Home</h2>
+            </div>
+            <div class="feed-container">
+                <ul  *ngFor="let review of reviews">
+                    <li class="list-group-item">
+                        <h2 style="color: #348ea6;">User: {{review.userId}} <span>Media: {{review.mediaId}}</span></h2>
+                        <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
+                        <h4 style="color: gray;">{{review.reviewDate | date:'medium'}}</h4>
+                        <h4 style="color: gray;">Likes: {{review.likes}}</h4>
+                        <br>
+                        <span><button class="goButton"(click)="Like(review.reviewId)">Like</button> <button class="goButton"(click)="getComments(review.reviewId)">comments</button></span>
+                        <hr>
+                        <div *ngIf="comments && reviewId===review.reviewId">
+                            <ul *ngFor="let comment of comments">
+                                <li>
+                                    <h3 style="color: #348ea6;">User: {{comment.userId}}</h3>
+                                    <h3>{{comment.content}}</h3>
+                                    <span>
+                                    <h4 style="color:gray">{{comment.date | date:'medium'}}</h4></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
 
 
