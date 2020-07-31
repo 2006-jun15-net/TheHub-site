@@ -50,8 +50,10 @@ export class FollowersComponent implements OnInit {
       this.userService.getFollowers(this.id)
       .then(followers =>{
         this.followers = followers; 
+        console.log(followers);
       });
     }
+  
   }
 
 }

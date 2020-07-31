@@ -1,0 +1,48 @@
+.neon {
+	display: inline;
+	position: relative;
+	font: 80px Helvetica, Sans-Serif;
+	letter-spacing: -5px;
+    color: #348ea6; 
+    margin-left: 85px;
+    padding-bottom: 50px;
+}
+
+html {
+    background-color: #0062cc;
+}
+body {
+    margin-top: 0px;
+  font-family: "Poppins", sans-serif;
+  background-color: #348ea6;
+  padding: 100px 100px 400px 100px;
+}
+
+.content{
+    padding: 100px 0px 200px 50px;
+    background-color: white;
+}
+
+li {
+    font-size: 20px;
+    padding: 10px 0px 0px 50px;
+    
+}
+
+ul{
+    list-style-type: none;
+}
+.profile-img{
+    text-align: center;
+    height: 55px;
+    width: 55px;
+    border-radius: 50%;
+}
+.profile-img img{
+    height: 20%;
+    width: 20%;
+}
+.username{
+    padding-left: 60px;
+    color: gray;
+}
