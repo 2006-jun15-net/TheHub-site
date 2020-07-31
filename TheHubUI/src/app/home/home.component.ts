@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
         .then(user => {
           this.UserId = user.userId;
           this.feed();
-
+          
         });
       }
     }
@@ -76,6 +76,7 @@ getMediaByMediaId(value: number): void{
       if (this.UserId){
         this.reviewService.getFeed(this.UserId)
         .then(reviews => {
+          debugger;
           this.reviews = reviews;
           console.log(reviews);
         })
@@ -98,6 +99,21 @@ getMediaByMediaId(value: number): void{
         console.log(error);
       });
     }
+
+    Like(reviewId: number): void
+    {
+      if (this.UserId)
+      {
+        this.reviewService.addReviewLike(reviewId, this.UserId)
+        .then(() => this.feed())
+        .catch(error => {
+          this.error = error.toString();
+          console.log(error);
+        });
+      }
+    }
+
+
 
   getMedia(value: string): void{
     this.searchService.getMediaTitles(value)

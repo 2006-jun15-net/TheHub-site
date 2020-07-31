@@ -69,6 +69,7 @@ export class ReviewListComponent implements OnInit {
     }
 
     this.getMedia();
+    debugger;
     this.reloadReviews();
     this.getUser();
   }
