@@ -8,7 +8,7 @@ import {ReviewService} from '../review.service';
 import { MediaService } from '../media.service';
 import { UserService } from '../user-service.service';
 import { Validators, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { OktaAuthService } from '@okta/okta-angular';
 
 @Component({
@@ -50,7 +50,16 @@ export class ReviewListComponent implements OnInit {
               private mediaService: MediaService,
               private userService: UserService,
               private oktaAuth: OktaAuthService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private router: Router ) { 
+                this.router.events.subscribe(event => {
+                  if (event instanceof NavigationEnd)
+                  {
+                    this.getMedia();
+                    this.reloadReviews();
+                  }
+                });
+              }
 
   async ngOnInit(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
@@ -60,6 +69,7 @@ export class ReviewListComponent implements OnInit {
     }
 
     this.getMedia();
+    debugger;
     this.reloadReviews();
     this.getUser();
   }

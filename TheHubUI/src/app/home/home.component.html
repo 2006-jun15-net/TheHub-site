@@ -50,7 +50,7 @@
             <h2>User: {{review.userId}}   <span>Media: {{review.mediaId}}</span></h2>
             <h2>{{review.content}} <span>{{review.rating}}/10</span></h2>
             <h4>{{review.reviewDate | date:'medium'}}</h4>
-        <h4>Likes: {{review.Likes}}</h4>
+        <h4>Likes: {{review.likes}}</h4>
         <br>
         <span><button (click)="Like(review.reviewId)">Like</button></span>
         <br>

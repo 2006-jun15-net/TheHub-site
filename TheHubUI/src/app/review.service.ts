@@ -9,6 +9,8 @@ import {OktaAuthService} from '@okta/okta-angular';
 export class ReviewService {
 
   private baseUrl = 'https://project2-thehub.azurewebsites.net';
+    // private baseUrl = 'https://localhost:5001';
+
 
   constructor(private httpClient: HttpClient, private oktaAuth: OktaAuthService) { }
 
@@ -60,6 +62,7 @@ export class ReviewService {
 
   async getFeed(id: number): Promise<Review[]>
   {
+    debugger;
     const accessToken = await this.oktaAuth.getAccessToken();
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json',
