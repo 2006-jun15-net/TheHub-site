@@ -28,11 +28,11 @@
         </li>
         <div class="topnav nav-item"  >
           
-        <input #myInput  *ngIf="isAuthenticated" class="nav-item" type="text" placeholder="Search..">
+        <input [(ngModel)]="input"  *ngIf="isAuthenticated" class="nav-item" type="text" placeholder="Search..">
         </div>
         
 
-        <button class="goButton"  *ngIf="isAuthenticated" style="color: white;" (click)="getMedia(myInput.value)">
+        <button class="goButton"  *ngIf="isAuthenticated" style="color: white;" (click)="getMedia(input)">
             Go 
         </button>
 
