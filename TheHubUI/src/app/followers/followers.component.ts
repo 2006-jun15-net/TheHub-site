@@ -45,6 +45,7 @@ export class FollowersComponent implements OnInit {
   }
 
   getFollowers(): void{
+
     if(this.id){
       this.userService.getFollowers(this.id)
       .then(followers =>{
